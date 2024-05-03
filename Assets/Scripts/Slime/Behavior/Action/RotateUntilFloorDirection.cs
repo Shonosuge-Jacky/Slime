@@ -1,0 +1,22 @@
+using BehaviorDesigner.Runtime.Tasks;
+using UnityEngine;
+
+[TaskCategory("SlimeAction")]
+[TaskDescription("Keep Rotating until reach floor direction. Returns Success.")]
+public class RotateUntilFloorDirection : SlimeAction
+{
+    private Quaternion target;
+    private float rotateDirection = 1;
+    public override void OnStart()
+    {
+        isFinished = false;
+        target = myProperty.currGrid.direction;
+    }
+
+    public override TaskStatus OnUpdate()
+    {
+        transform.rotation *= Quaternion.AngleAxis(rotateDirection * myProperty.turnSpeed * Time.deltaTime, Vector3.up);
+        isFinished = Quaternion.Angle(transform.rotation, target) <= 5;
+        return isFinished? TaskStatus.Success : TaskStatus.Running;
+    }
+}

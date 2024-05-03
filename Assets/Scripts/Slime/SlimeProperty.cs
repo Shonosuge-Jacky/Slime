@@ -1,0 +1,76 @@
+using UnityEngine;
+
+public enum SlimeState{
+    Idle,
+    Chat,
+    Music
+}
+public enum Emoji{
+    Idle,
+    CloseEye,
+    Excited,
+    Mad,
+    Confused,
+    emm
+}
+
+[System.Serializable]
+public struct FaceMaterial{
+    public Material idle;
+    public Material closeEye;
+    public Material mad;
+    public Material excited;
+    public Material confused;
+    public Material emmm;
+}
+
+public class SlimeProperty : MonoBehaviour
+{
+    [Header("Property")]
+    public SlimeState slimeState;
+    public float moveSpeed;
+    public float turnSpeed;
+    public float jumpForce;
+    public Emoji emoji;
+    public bool foundInteractTarget;
+    public FloorGrid currGrid;
+
+    [Header("Variables")]
+    public FaceMaterial faceMaterial;
+    public GameObject root;
+    public GroundCheck groundCheck;
+    public FieldOfView fieldOfView;
+
+    public GridManager gridManager;
+
+    // public bool isColliding;
+    // public SlimeColliderCheck slimeColliderCheck;
+    private void Awake() {
+        gridManager = FindObjectOfType<GridManager>();
+    }
+
+    public Material EmojiToMaterial(Emoji emoji){
+        switch (emoji){
+            case Emoji.Idle:
+                return faceMaterial.idle;
+            case Emoji.CloseEye:
+                return faceMaterial.closeEye;
+            case Emoji.Excited:
+                return faceMaterial.excited;
+            case Emoji.Mad:
+                return faceMaterial.mad;
+            case Emoji.Confused:
+                return faceMaterial.confused;
+            case Emoji.emm:
+                return faceMaterial.emmm; 
+            default:
+                return faceMaterial.idle;
+        }
+    }
+
+    private void Update() {
+        root.transform.position = new Vector3(transform.position.x, root.transform.position.y, transform.position.z);
+        foundInteractTarget = fieldOfView.foundTarget;
+        currGrid = gridManager.GetFloorGrid(new Vector3(transform.position.x, 1, transform.position.z));
+    }
+}
