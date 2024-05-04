@@ -9,7 +9,7 @@ public class SlimeAIManager : MonoBehaviour
     }
 
     public void GetCalled(Transform by){
-        Debug.Log("GetCalled");
+        // Debug.Log("GetCalled");
         behaviorTree.SendEvent<object>("CallEvent", by);
     }
 }
