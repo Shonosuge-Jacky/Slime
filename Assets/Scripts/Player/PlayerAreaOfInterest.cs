@@ -7,7 +7,7 @@ public class PlayerAreaOfInterest : MonoBehaviour
     [SerializeField] List<GameObject> slimes;
 
     private void OnTriggerEnter(Collider other) {
-        Debug.Log("OnTriggerEnter" + other.gameObject.name);
+        // Debug.Log("OnTriggerEnter" + other.gameObject.name);
         if(other.CompareTag("Slime")){
             slimes.Add(other.gameObject);
         }

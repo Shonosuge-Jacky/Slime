@@ -30,6 +30,7 @@ public class SlimeProperty : MonoBehaviour
     public SlimeState slimeState;
     public float moveSpeed;
     public float turnSpeed;
+    public float turnSpeed_slow;
     public float jumpForce;
     public Emoji emoji;
     public bool foundInteractTarget;
