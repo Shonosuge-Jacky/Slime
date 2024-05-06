@@ -54,7 +54,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5530373866449955181, guid: 369786043fa04f847ac8a7ebf3bd201f, type: 3}
       propertyPath: m_Name
-      value: SlimeGreen
+      value: SlimeGreen Varient
+      objectReference: {fileID: 0}
+    - target: {fileID: 7187140669017316156, guid: 369786043fa04f847ac8a7ebf3bd201f, type: 3}
+      propertyPath: jumpForce
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum SlimeState{
     Idle,
@@ -24,6 +26,7 @@ public struct FaceMaterial{
     public Material emmm;
 }
 
+
 public class SlimeProperty : MonoBehaviour
 {
     [Header("Property")]
@@ -32,6 +35,7 @@ public class SlimeProperty : MonoBehaviour
     public float turnSpeed;
     public float turnSpeed_slow;
     public float jumpForce;
+    public GroundCheck groundCheck;
     public Emoji emoji;
     public bool foundInteractTarget;
     public FloorGrid currGrid;
@@ -39,10 +43,9 @@ public class SlimeProperty : MonoBehaviour
     [Header("Variables")]
     public FaceMaterial faceMaterial;
     public GameObject root;
-    public GroundCheck groundCheck;
     public FieldOfView fieldOfView;
-
     public GridManager gridManager;
+    public SlimeEffect effect;
 
     // public bool isColliding;
     // public SlimeColliderCheck slimeColliderCheck;
@@ -74,4 +77,6 @@ public class SlimeProperty : MonoBehaviour
         foundInteractTarget = fieldOfView.foundTarget;
         currGrid = gridManager.GetFloorGrid(new Vector3(transform.position.x, 1, transform.position.z));
     }
+
+    
 }

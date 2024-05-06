@@ -23,7 +23,7 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         UpdateMovePosition();
-        if(Input.GetKeyDown(KeyCode.C)){
+        if(Input.GetKeyDown(KeyCode.L)){
             CallSlime();
         }
     }

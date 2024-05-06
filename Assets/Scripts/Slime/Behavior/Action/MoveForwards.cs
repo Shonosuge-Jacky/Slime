@@ -20,10 +20,11 @@ public class MoveForwards : SlimeAction
     public override TaskStatus OnUpdate()
     {
         myTransform.position += transform.forward * myProperty.moveSpeed * Time.deltaTime;
-        if(!isFinished && myProperty.groundCheck.isGround){ 
+        if(!isFinished && myProperty.groundCheck.isGround && myRigidbody.velocity.y < 0.3){ 
+            Debug.Log("Jump");
             myRigidbody.velocity = new Vector3(
                 myRigidbody.velocity.x, 
-                myRigidbody.velocity.y+ myProperty.jumpForce + Random.Range(-2,2), 
+                myRigidbody.velocity.y+ myProperty.jumpForce + Random.Range(0,20), 
                 myRigidbody.velocity.z );
         }
         isFinished = Vector3.Distance(original, transform.position) >= distance;

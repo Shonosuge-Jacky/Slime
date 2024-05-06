@@ -17,6 +17,6 @@ public class RotateUntilFloorDirection : SlimeAction
     {
         transform.rotation *= Quaternion.AngleAxis(rotateDirection * myProperty.turnSpeed * Time.deltaTime, Vector3.up);
         isFinished = Quaternion.Angle(transform.rotation, target) <= 5;
-        return isFinished? TaskStatus.Success : TaskStatus.Running;
+        return isFinished && myProperty.groundCheck.isGround? TaskStatus.Success : TaskStatus.Running;
     }
 }

@@ -19,11 +19,11 @@ public class Follow : SlimeAction
     public override TaskStatus OnUpdate()
     {
         myTransform.position = Vector3.MoveTowards(transform.position, target.Value.position,myProperty.moveSpeed * Time.deltaTime) ;
-        if(!isFinished && myProperty.groundCheck.isGround ){ 
+        if(!isFinished && myProperty.groundCheck.isGround && myRigidbody.velocity.y <= 0){ 
             // myRigidbody.velocity = Vector3.zero;
             myRigidbody.velocity = new Vector3(
                 myRigidbody.velocity.x, 
-                myRigidbody.velocity.y + myProperty.jumpForce + Random.Range(0,1), 
+                myRigidbody.velocity.y + myProperty.jumpForce + Random.Range(-1,1), 
                 myRigidbody.velocity.z );
         }
         // Debug.Log(Vector3.Distance(target.Value.position, transform.position) - Mathf.Abs(target.Value.position.y - transform.position.y));

@@ -61,10 +61,10 @@ public class FloorGridsStorage : ScriptableObject
     
     public void SetFloorDebug(Vector3Int cellPosition, Material material){
         floorStates[cellPosition].debug.GetComponent<Renderer>().material = material;
-        if(floorStates[cellPosition].floorState == FloorState.Move){
+        // if(floorStates[cellPosition].floorState == FloorState.Move){
             floorStates[cellPosition].debug.transform.rotation 
                 = GetFloorDirection(cellPosition) * Quaternion.Euler(0, 180f, 0);
-        }
+        // }s
         
     }
 

@@ -7,6 +7,7 @@ public class SlimeAction : Action
     protected Transform myTransform;
     protected Rigidbody myRigidbody;
     protected SlimeProperty myProperty;
+    protected SlimeEffect myEffect;
     protected Renderer myRenderer;
     protected bool isFinished;
     
@@ -14,8 +15,8 @@ public class SlimeAction : Action
         _slime = gameObject;
         myTransform = GetComponent<Transform>();
         myRigidbody = transform.GetChild(0).GetChild(0).GetComponent<Rigidbody>();
-        // myRigidbody = GetComponent<Rigidbody>();
         myProperty = GetComponent<SlimeProperty>();
         myRenderer = transform.GetChild(1).GetComponent<Renderer>();
+        myEffect = GetComponent<SlimeEffect>();
     }
 }

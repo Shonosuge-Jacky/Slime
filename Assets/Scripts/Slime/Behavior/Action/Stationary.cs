@@ -2,15 +2,21 @@ using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine;
 
 [TaskCategory("SlimeAction")]
-[TaskDescription("After jumping, make the root velocity = 0. Returns Success.")]
+[TaskDescription("After landing, make the root velocity = 0. Returns Success.")]
 public class Stationary : SlimeAction
 {
     public override void OnStart()
     {
-        myRigidbody.velocity = Vector3.zero;
+
     }
     public override TaskStatus OnUpdate()
     {
-        return TaskStatus.Success;
+        if(myProperty.groundCheck.isGround){
+            myRigidbody.velocity = Vector3.zero;
+            return TaskStatus.Success;
+        }else{
+            return TaskStatus.Running;
+        }
+        
     }
 }

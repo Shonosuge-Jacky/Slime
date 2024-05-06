@@ -26,7 +26,7 @@ public class RotateByAngle : SlimeAction
         // Debug.Log(Quaternion.Angle(transform.rotation, target));
         isFinished = Quaternion.Angle(transform.rotation, target) <= 10;
         // if(isSearchingInteraction){}
-        return isFinished? TaskStatus.Success : TaskStatus.Running;
+        return isFinished && myProperty.groundCheck.isGround? TaskStatus.Success : TaskStatus.Running;
         
     }
     public override void OnEnd()

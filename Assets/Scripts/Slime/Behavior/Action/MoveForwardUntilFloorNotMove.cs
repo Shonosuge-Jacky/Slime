@@ -7,11 +7,14 @@ public class MoveForwardUntileFloorNotMove : SlimeAction
 {
     public override TaskStatus OnUpdate()
     {
-        myTransform.position += transform.forward * myProperty.moveSpeed * Time.deltaTime;
-        if(!isFinished && myProperty.groundCheck.isGround){ 
+        if(!myProperty.groundCheck.isGround){
+            myTransform.position += transform.forward * myProperty.moveSpeed * Time.deltaTime;
+        }
+        
+        if(!isFinished && myProperty.groundCheck.isGround && myRigidbody.velocity.y < 0.3){ 
             myRigidbody.velocity = new Vector3(
                 myRigidbody.velocity.x, 
-                myRigidbody.velocity.y+ myProperty.jumpForce + Random.Range(-2,2), 
+                myRigidbody.velocity.y+ myProperty.jumpForce + Random.Range(0,20), 
                 myRigidbody.velocity.z );
         }
         isFinished = myProperty.currGrid.floorState != FloorState.Move;

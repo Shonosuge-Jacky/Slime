@@ -67,6 +67,7 @@ public class GridManager : MonoBehaviour
         for (int i = x - floorGameObject.leadArea ; i < x + floorGameObject.leadArea +1; i++){
             for (int j = z - floorGameObject.leadArea ; j < z + floorGameObject.leadArea +1; j++){
                 if(i != x || j != z){
+                    // Debug.Log("Move" + i + " " + j);
                     floorGridsStorage.SetFloorState(new Vector3Int(i, 0, j), new Vector3(x,0,z) - new Vector3(i,0,j) );
                     floorGridsStorage.SetFloorDebug(new Vector3Int(i, 0, j), debugs.arrow);
                 }
@@ -77,6 +78,7 @@ public class GridManager : MonoBehaviour
         
         for (int i = x - floorGameObject.stateArea; i < x + floorGameObject.stateArea+1; i++){
             for (int j = z - floorGameObject.stateArea; j < z + floorGameObject.stateArea+1; j++){
+                // Debug.Log("Music" + i + " " + j);
                 floorGridsStorage.SetFloorState(new Vector3Int(i, 0, j), FloorState.Music);
                 floorGridsStorage.SetFloorDebug(new Vector3Int(i, 0, j), debugs.state);
             }

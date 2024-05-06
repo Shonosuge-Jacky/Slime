@@ -35,7 +35,7 @@ public class RotateToTarget : SlimeAction
             isFinished = Mathf.Abs(transform.eulerAngles.y - target.eulerAngles.y) <= 12;
         }
         
-        return isFinished? TaskStatus.Success : TaskStatus.Running;
+        return isFinished && myProperty.groundCheck.isGround? TaskStatus.Success : TaskStatus.Running;
     }
     
 }
