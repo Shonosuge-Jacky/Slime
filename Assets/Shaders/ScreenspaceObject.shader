@@ -6,13 +6,59 @@
         _MainTex("Albedo (RGB)", 2D) = "white" {}
         _PatternTex("Pattern", 2D) = "white" {}
         _Scaling("Scaling", Float) = 0.5
-        _Glossiness ("Smoothness", Range(0,1)) = 0.5
-        _Metallic ("Metallic", Range(0,1)) = 0.0
+        _PatternColor("Pattern Color", Color) = (0,0,0,1)
+
+        _OutlineColor("Outline Color",Color) = (0.1,0.1,0.1,1)
+		_OutlineWidth("Outline Width",Range(0,0.0001)) = 0
+        _TexOffset("Pattern Texture Offset", Range(0,1)) = 1
     }
     SubShader
     {
+        Pass        //Outline Pass
+		{
+            ZWrite Off
+
+			CGPROGRAM
+			
+			#pragma vertex MyVertexProgam
+			#pragma fragment MyFragmentProgram
+
+			#include "UnityCG.cginc"
+			
+			struct VertexData
+			{
+				float4 position : POSITION;
+				float3 normal : NORMAL;
+			};
+
+			struct Interpolators
+			{
+				float4 pos : SV_POSITION;
+                float4 worldPos : TEXCOORD0;
+			};
+
+			float4 _OutlineColor;
+			float _OutlineWidth;
+            
+            
+
+			Interpolators MyVertexProgam(VertexData v) {
+				Interpolators i;
+				float camDist = distance(UnityObjectToWorldDir(v.position), _WorldSpaceCameraPos);
+                // v.vertex.xyz += normalize(v.normal.xyz) * _OutlineWidth;
+				v.position.xyz += normalize(v.normal) * camDist * _OutlineWidth;
+				i.pos = UnityObjectToClipPos(v.position);
+                i.worldPos = mul(unity_ObjectToWorld, v.position);
+				return i;
+			}
+
+			fixed4 MyFragmentProgram(Interpolators i) : SV_TARGET {
+				return _OutlineColor;
+			}
+
+			ENDCG
+		}
         Tags { "RenderType"="Opaque" }
-        LOD 200
 
         CGPROGRAM
         // Physically based Standard lighting model, and enable shadows on all light types
@@ -30,11 +76,10 @@
             float4 screenPos;
         };
 
-        half _Glossiness;
-        half _Metallic;
         fixed4 _Color;
-
         float _Scaling;
+        float4 _PatternColor;
+        float _TexOffset;
 
         fixed4 LightingUnlit(SurfaceOutput s, fixed3 lightDir, fixed atten)
         {
@@ -44,7 +89,7 @@
             c.a = s.Alpha;
 
             //atten = step(.1,atten) * .5;
-            c.rgb *= atten;
+            // c.rgb *= atten;
 
             return c * _LightColor0;
         }
@@ -57,10 +102,15 @@
             coords.y *= _ScreenParams.y / _ScreenParams.x;
 
             fixed4 patternColor = tex2D(_PatternTex, coords * _Scaling);
+            if(patternColor.r > _TexOffset){
+                o.Albedo = _PatternColor;
+            }else{
+                o.Albedo = c.rgb;
+            }
 
-            c *= patternColor;
+            // c *= patternColor ;
 
-            o.Albedo = c.rgb;
+            
         }
         ENDCG
     }

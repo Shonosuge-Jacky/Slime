@@ -1,4 +1,4 @@
-Shader "Custom/Slime Toon Shader"
+Shader "Custom/Toon Shader"
 {
     Properties
     {
@@ -8,11 +8,9 @@ Shader "Custom/Slime Toon Shader"
 		_SpecularColor("Specular Color", Range(0,2)) = 0.9
         _DiffuseColor("Diffuse Color", Range(0,2)) = 0.6
         _AmbientColor("Ambient Color", Range(0,2)) = 0.4
-        _ExternalColor("External Light Color", Range(0, 1)) = 0.8
 
         _SpecularLightRange("Specular Light Range", Range(0, 1)) = 0.5
         _DiffuseLightRange("Diffuse Light Range", Range(0, 1)) = 0
-        _ExternalLightRange("External Light Range", Range(0, 20)) = 10
 
         _RimThreshold("Rim Threshold", Range(0,1)) = 0.1
         _RimAmount("Rim Amount", Range(0, 1)) = 0.7
@@ -176,75 +174,5 @@ Shader "Custom/Slime Toon Shader"
             }
             ENDCG
         }
-
-        Pass {      //Spot Light
-			Tags {
-				"LightMode" = "ForwardAdd"
-			}
-
-            Blend One One
-            ZWrite Off
-            
-
-			CGPROGRAM
-
-			#pragma target 3.0
-            #pragma multi_compile
-            #pragma vertex MyVertexProgram
-			#pragma fragment MyFragmentProgram
-            
-            
-			#include "UnityStandardBRDF.cginc"
-            #include "UnityStandardUtils.cginc"
-            #include "Lighting.cginc"
-            #include "AutoLight.cginc"
-
-            sampler2D _MainTex;
-            float4 _MainTex_ST;
-            float _ExternalLightRange;
-            float _ExternalColor;
-
-            float _FadeOffset;
-            sampler3D _DitherMaskLOD;
-            float _FadeDensity;	
-
-            struct VertexData {
-                float4 position : POSITION;
-                float3 normal : NORMAL;
-            };
-
-            struct Interpolators {
-                float4 position : SV_POSITION;
-                float3 normal : TEXCOORD1;
-                float3 worldPosition: TEXCOORD0;
-            };
-
-            Interpolators MyVertexProgram (VertexData v) {
-                Interpolators i;
-                i.position = UnityObjectToClipPos(v.position);
-                i.worldPosition = mul(unity_ObjectToWorld, v.position);
-                i.normal = UnityObjectToWorldNormal(v.normal);
-                return i;
-            }
-
-            float4 MyFragmentProgram (Interpolators i) : SV_TARGET {
-
-                float _Distance = distance(_WorldSpaceCameraPos, i.worldPosition);
-                if(_Distance < _FadeOffset){
-                    float dither = 
-                        tex3D(_DitherMaskLOD, float3(i.position.xy * _FadeDensity, lerp(0, _FadeOffset, _Distance)  * 0.9375)).a;
-                    clip(dither - 1);
-                }
-
-                i.normal = normalize(i.normal);
-                float3 lightDir = _WorldSpaceLightPos0 - i.worldPosition;
-                float3 lightDistance = _WorldSpaceLightPos0 - i.worldPosition;
-                float3 diffuse = _LightColor0 * DotClamped(lightDir, i.normal);
-                float3 diffuseLight = diffuse > _ExternalLightRange ? _ExternalColor : 0;
-                return float4(diffuseLight , 1);
-            }
-
-			ENDCG
-		}
     }
 }

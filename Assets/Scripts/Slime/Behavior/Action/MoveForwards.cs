@@ -21,7 +21,7 @@ public class MoveForwards : SlimeAction
     {
         myTransform.position += transform.forward * myProperty.moveSpeed * Time.deltaTime;
         if(!isFinished && myProperty.groundCheck.isGround && myRigidbody.velocity.y < 0.3){ 
-            Debug.Log("Jump");
+            // Debug.Log("Jump");
             myRigidbody.velocity = new Vector3(
                 myRigidbody.velocity.x, 
                 myRigidbody.velocity.y+ myProperty.jumpForce + Random.Range(0,20), 
