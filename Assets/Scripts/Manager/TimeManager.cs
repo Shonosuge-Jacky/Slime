@@ -1,35 +1,94 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using BehaviorDesigner.Runtime.Tasks.Unity.Math;
 using UnityEngine;
 
 public enum DayNight{
     Day,
-    Night
+    Night,
+}
+public enum AMPM{
+    AM,
+    PM
+}
+
+[Serializable]
+public struct TimeVariable{
+    public DayNightEvent daynightEvent;
+    public DayNight currDayNight;
+    public int currHour_12;
+    public float currMinutes;
+    public AMPM currAMPM;
+    public int currHour_24;
+    public float currHourMin_24;
+
+    public void ClearEventListeners(){
+        daynightEvent.ClearEventListeners();
+    }
+
+    public void AddMinutes(float val){
+        currMinutes += val;
+        if(currMinutes > 60){
+            currMinutes = 0;
+            AddHour();
+        }
+    }
+    void AddHour(){
+        if(currHour_12 == 11){
+            currAMPM = currAMPM == AMPM.AM? AMPM.PM : AMPM.AM;
+        }
+        if(currHour_12 == 6){
+            currDayNight = currDayNight == DayNight.Day? DayNight.Night : DayNight.Day;
+            daynightEvent.TriggerDayNightChangeEvent(currDayNight);
+        }
+        currHour_12 = currHour_12 == 12? 1 : currHour_12 + 1;
+
+        currHour_24 = currHour_24 == 23? 0 : currHour_24 + 1;
+        
+    }
 }
 
 public class TimeManager : MonoBehaviour
 {
-    public DayNight daynight;
-    public float hour;
+    public TimeVariable currTime;
     public Light gamelight;
-    public float speed;
+    public float timeSpeed;
+    public float nightLightIntensity = 0.43f;
+    public float dayLightIntensity = 1f;
+    
+    float differLightIntensity;
     float xRotation;
 
-    void Start()
-    {
-        xRotation = 10;
+    private void Awake() {
+        differLightIntensity = dayLightIntensity - nightLightIntensity;
+        currTime.ClearEventListeners();
     }
-
-    // Update is called once per frame
     void Update()
     {
-        UpdateLightRotation();
-        
+        UpdateTimeSystem();
     }
     
-    void UpdateLightRotation(){
-        xRotation += speed;
-        xRotation = Mathf.Clamp(xRotation, 0f, 180f);
+    void UpdateTimeSystem(){
+        currTime.currHourMin_24 = currTime.currHour_24 + currTime.currMinutes / 60f;
+        currTime.AddMinutes(timeSpeed * Time.deltaTime);
+        xRotation = currTime.currHourMin_24 / 24f * 360 - 90;
         gamelight.transform.localRotation = Quaternion.Euler(xRotation, 45f, 0f);
+        // gamelight.intensity = currTime.currDayNight == DayNight.Night ? nightLightIntensity : 1f;
+
+        // if(currTime.)
+        if(currTime.currHour_24 < 5){
+            gamelight.intensity = nightLightIntensity;
+        }else if(5 <= currTime.currHour_24 && currTime.currHour_24 < 9){
+            gamelight.intensity = (currTime.currHourMin_24 - 5) / 4f  * differLightIntensity + nightLightIntensity;
+        }else if(9 <= currTime.currHour_24 && currTime.currHour_24 < 17){
+            gamelight.intensity = dayLightIntensity;
+        }else if(17 <= currTime.currHour_24 && currTime.currHour_24 < 21){
+            gamelight.intensity = (21 - currTime.currHourMin_24) / 4f  * differLightIntensity + nightLightIntensity;
+        }else{
+            gamelight.intensity = nightLightIntensity;
+        }
+        // Debug.Log(gamelight.intensity);
+        
     }
 }

@@ -50,7 +50,7 @@ public class MouseLock : MonoBehaviour
         float fieldOfViewChange = newFieldOfView + Input.mouseScrollDelta.y * -5;
         
         if(minFieldOfView <= fieldOfViewChange && maxFieldOfView >= fieldOfViewChange){
-            Debug.Log(fieldOfViewChange);
+            // Debug.Log(fieldOfViewChange);
             newFieldOfView = fieldOfViewChange;
         }
         GetComponent<Camera>().DOFieldOfView(newFieldOfView, 0.3f);

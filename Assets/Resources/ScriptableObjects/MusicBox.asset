@@ -19,3 +19,5 @@ MonoBehaviour:
   rotationOffset: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
   stateArea: 5
   leadArea: 12
+  daytimeFloorState: 2
+  nighttimeFloorState: 1

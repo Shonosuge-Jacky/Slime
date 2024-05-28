@@ -94,6 +94,8 @@ Shader "Custom/Slime Toon Shader"
             #pragma multi_compile DIRECTIONAL
 
             #include "UnityStandardBRDF.cginc"
+            #include "Lighting.cginc"
+			#include "AutoLight.cginc"
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
@@ -151,15 +153,16 @@ Shader "Custom/Slime Toon Shader"
                     clip(dither - 1);
                 }
                 
+                
                 i.normal = normalize(i.normal);
 				i.viewDir = normalize(i.viewDir);
 
                 float3 halfVector = normalize(_WorldSpaceLightPos0 + i.viewDir);
 				float specular =  pow( DotClamped(halfVector, i.normal), _Smoothness * 500);
-                float specularLight = specular > _SpecularLightRange? _SpecularColor : 0;
+                float specularLight = specular > _SpecularLightRange? _SpecularColor * (_LightColor0 - (0.43, 0.43, 0.43)) * 2  : 0;
 
 				float diffuse = DotClamped(_WorldSpaceLightPos0, i.normal);
-                float diffuseLight = diffuse > _DiffuseLightRange? _DiffuseColor : 0;
+                float diffuseLight = diffuse > _DiffuseLightRange? _DiffuseColor * _LightColor0 : 0;
 
                 float ambientLight = specularLight == 0 && diffuseLight == 0 ?_AmbientColor : 0;
 
@@ -228,7 +231,7 @@ Shader "Custom/Slime Toon Shader"
             }
 
             float4 MyFragmentProgram (Interpolators i) : SV_TARGET {
-
+                
                 float _Distance = distance(_WorldSpaceCameraPos, i.worldPosition);
                 if(_Distance < _FadeOffset){
                     float dither = 
@@ -246,5 +249,7 @@ Shader "Custom/Slime Toon Shader"
 
 			ENDCG
 		}
+
+        UsePass "Legacy Shaders/VertexLit/SHADOWCASTER"
     }
 }

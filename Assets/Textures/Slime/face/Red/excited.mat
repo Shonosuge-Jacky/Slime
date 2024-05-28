@@ -61,10 +61,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _AmbientColor: 0.4
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
+    - _DiffuseColor: 0.6
+    - _DiffuseLightRange: 0
     - _DstBlend: 0
+    - _ExternalColor: 0.8
+    - _ExternalLightRange: 10
+    - _FadeDensity: 0.25
+    - _FadeRange: 1
+    - _FadeRatio: 0.5
     - _GlossMapScale: 1
     - _Glossiness: 18
     - _GlossyReflections: 1
@@ -73,11 +81,16 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Outline: 1.28
+    - _OutlineWidth: 0.001
     - _Parallax: 0.02
     - _RimAmount: 0.547
+    - _RimColor: 1.5
     - _RimThreshold: 0.214
+    - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
+    - _SpecularColor: 0.9
     - _SpecularHighlights: 1
+    - _SpecularLightRange: 0.5
     - _SrcBlend: 1
     - _UVSec: 0
     - _Width: 1

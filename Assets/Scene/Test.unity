@@ -4695,6 +4695,7 @@ MonoBehaviour:
   floorObjectParent: {fileID: 248835688}
   musicBoxObject: {fileID: 11400000, guid: e23d7147691ce4f499e9051eaec0d02e, type: 2}
   showDebug: 0
+  daynightEvent: {fileID: 11400000, guid: edf152c7d4fd28948ae614ab22c043ef, type: 2}
 --- !u!1001 &1002282696
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5775,10 +5776,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53e4119b3cb86de49ad35d8e0ec5a562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  daynight: 0
-  hour: 0
+  currTime:
+    daynightEvent: {fileID: 11400000, guid: edf152c7d4fd28948ae614ab22c043ef, type: 2}
+    currDayNight: 1
+    currHour_12: 6
+    currMinutes: 0
+    currAMPM: 0
+    currHour_24: 6
+    currHourMin_24: 0
   gamelight: {fileID: 1251304403}
-  speed: 0.005
+  timeSpeed: 60
+  nightLightIntensity: 0.43
+  dayLightIntensity: 1
 --- !u!114 &1222579011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6007,7 +6016,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -9388,7 +9397,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5509319213036987341, guid: 8b32e10c9c97ed342b62632f4801e87d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.71719
+      value: 11.55
       objectReference: {fileID: 0}
     - target: {fileID: 5509319213036987341, guid: 8b32e10c9c97ed342b62632f4801e87d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9396,7 +9405,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5509319213036987341, guid: 8b32e10c9c97ed342b62632f4801e87d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 14.540672
+      value: 15.19
       objectReference: {fileID: 0}
     - target: {fileID: 5509319213036987341, guid: 8b32e10c9c97ed342b62632f4801e87d, type: 3}
       propertyPath: m_LocalRotation.w

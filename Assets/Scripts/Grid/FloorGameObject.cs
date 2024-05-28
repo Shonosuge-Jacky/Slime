@@ -13,5 +13,7 @@ public class FloorGameObject : ScriptableObject
     public Quaternion rotationOffset;
     public int stateArea;
     public int leadArea;
+    public FloorState daytimeFloorState;
+    public FloorState nighttimeFloorState;
     // 
 }

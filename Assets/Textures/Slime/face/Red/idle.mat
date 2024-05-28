@@ -72,6 +72,8 @@ Material:
     - _ExternalLightRange: 0.2
     - _FadeDensity: 0.25
     - _FadeOffset: 1
+    - _FadeRange: 1
+    - _FadeRatio: 0.5
     - _GlossMapScale: 1
     - _Glossiness: 18
     - _GlossyReflections: 1
