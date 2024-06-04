@@ -15,9 +15,13 @@ public class GridManager : MonoBehaviour
     public FloorGridsStorage floorGridsStorage;
 
     public Transform floorObjectParent;
-    public FloorGameObject musicBoxObject;
     public bool showDebug;
     public DayNightEvent daynightEvent;
+
+    [Header("Floor GameObject")]
+    public FloorGameObject musicBoxObject;
+    public FloorGameObject streeLightObject;
+    
 
     private void Awake() {
         grid = GetComponent<Grid>();
@@ -54,16 +58,20 @@ public class GridManager : MonoBehaviour
         AddObjectInGrid(20,20,musicBoxObject);
         AddObjectInGrid(20,60,musicBoxObject);
         AddObjectInGrid(80,40,musicBoxObject);
+        AddObjectInGrid(10, 50, streeLightObject);
+        AddObjectInGrid(70, 10, streeLightObject);
+        AddObjectInGrid(70, 70, streeLightObject);
         floorGridsStorage.DictionaryToList();
         SetFloorBorder(100);
     }
 
     public void AddObjectInGrid(int x, int z, FloorGameObject floorGameObject){
         
-        Instantiate(floorGameObject.gameObject, 
+        GameObject newEnvironemtObject = Instantiate(floorGameObject.gameObject, 
             grid.CellToWorld(new Vector3Int(x, 0, z)) + floorGameObject.positionOffset, 
             floorGameObject.rotationOffset, 
             floorObjectParent);
+        daynightEvent.AddListener(newEnvironemtObject.GetComponent<EnvironmentObject>());
 
         for (int i = x - floorGameObject.leadArea ; i < x + floorGameObject.leadArea +1; i++){
             for (int j = z - floorGameObject.leadArea ; j < z + floorGameObject.leadArea +1; j++){

@@ -23,13 +23,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1154239180035129519}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6717531491186075719}
+  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1406229003625700938
 GameObject:
@@ -57,7 +57,6 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1406229003625700938}
-  serializedVersion: 2
   m_LocalRotation: {x: 0.00015634557, y: -0.013154722, z: 0.99991345, w: -0.0000020721109}
   m_LocalPosition: {x: 0.00003211415, y: 0.008967551, z: 0.009941755}
   m_LocalScale: {x: 1, y: 1.0000005, z: 1.0000002}
@@ -65,6 +64,7 @@ Transform:
   m_Children:
   - {fileID: 8052554229350387709}
   m_Father: {fileID: 1284290345660716173}
+  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2563068904972679991
 BoxCollider:
@@ -161,7 +161,6 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2103901157230447967}
-  serializedVersion: 2
   m_LocalRotation: {x: -0.7071069, y: 0, z: 0, w: 0.7071067}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
@@ -175,6 +174,7 @@ Transform:
   - {fileID: 8242860367599665274}
   - {fileID: 3357758416856142261}
   m_Father: {fileID: 2778402326366525159}
+  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2609609953780580968
 GameObject:
@@ -202,7 +202,6 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2609609953780580968}
-  serializedVersion: 2
   m_LocalRotation: {x: 0.50637037, y: -0.49354753, z: 0.49355343, w: 0.5063645}
   m_LocalPosition: {x: 0.008897881, y: -1.5485574e-10, z: 0.009955199}
   m_LocalScale: {x: 1.0000001, y: 1.0000004, z: 1}
@@ -210,6 +209,7 @@ Transform:
   m_Children:
   - {fileID: 7283956598595299998}
   m_Father: {fileID: 1284290345660716173}
+  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &5428450806418215112
 BoxCollider:
@@ -306,7 +306,6 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2744706907973896519}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.0094, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -315,6 +314,7 @@ Transform:
   - {fileID: 8048393887171835096}
   - {fileID: 7234636573516954079}
   m_Father: {fileID: 5838880080981088452}
+  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5530373866449955181
 GameObject:
@@ -343,7 +343,6 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5530373866449955181}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 10, z: 6}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -353,6 +352,7 @@ Transform:
   - {fileID: 7930750663075308169}
   - {fileID: 7893606477074745183}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3264923030442273048
 MonoBehaviour:
@@ -384,26 +384,26 @@ MonoBehaviour:
       variableStartIndex: 
       JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(348.478241,90.18843)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-29.5653324,130)"},"ID":1,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"RotateByAngle","NodeData":{"Offset":"(-1390.25891,120)"},"ID":2,"Name":"Rotate
         By Angle","Instant":true,"Singleangle_min":-180,"Singleangle_max":180,"BooleanisSearchingInteraction":false},{"Type":"MoveForwards","NodeData":{"Offset":"(-1222.18738,120.105927)"},"ID":3,"Name":"Move
-        Forwards","Instant":true,"Singledistance_min":0,"Singledistance_max":1,"BooleanisSearchingInteraction":false},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(-799.23584,125.031494)"},"ID":4,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":3},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":3},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":5}},{"Type":"BehaviorDesigner.Runtime.Tasks.Parallel","NodeData":{"Offset":"(460,100)"},"ID":5,"Name":"Parallel","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(-702.5664,220.827515)"},"ID":6,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(3.8888855,110)"},"ID":7,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"ChangeEmoji","NodeData":{"Offset":"(-173.221649,131.497589)"},"ID":8,"Name":"Change
+        Forwards","Instant":true,"Singledistance_min":0,"Singledistance_max":1,"BooleanisSearchingInteraction":false},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(-799.23584,125.031494)"},"ID":4,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":3},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":3},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":5}},{"Type":"BehaviorDesigner.Runtime.Tasks.Parallel","NodeData":{"Offset":"(460,100)"},"ID":5,"Name":"Parallel","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(-785.899658,179.160889)"},"ID":6,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(3.8888855,110)"},"ID":7,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"ChangeEmoji","NodeData":{"Offset":"(-173.221649,131.497589)"},"ID":8,"Name":"Change
         Emoji","Instant":true,"EmojifaceMaterial":"Idle"},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(-53.10322,132.7586)"},"ID":9,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":2}},{"Type":"ChangeEmoji","NodeData":{"Offset":"(59.32655,133.17691)"},"ID":10,"Name":"Change
-        Emoji","Instant":true,"EmojifaceMaterial":"CloseEye"},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(169.387024,127.777832)"},"ID":11,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(112.747131,214.574356)"},"ID":12,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(0,140)"},"ID":13,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-509.62912,118.84729)"},"ID":14,"Name":"Sequence","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.HasReceivedEvent","NodeData":{"Offset":"(-641.387,105.2576)"},"ID":15,"Name":"Has
-        Received Event","Instant":true,"SharedStringeventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"CallEvent"},"SharedVariablestoredValue1":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"_callEventBy","IsShared":true}},{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(-500.2001,117.570374)"},"ID":16,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"Get
-        called"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}},{"Type":"ShowOverheadModel","NodeData":{"Offset":"(-357.082275,114.450729)"},"ID":17,"Name":"Show
-        Overhead Model","Instant":true,"GameObjectoverheadModel":0},{"Type":"RotateToTarget","NodeData":{"Offset":"(-220.970963,120.474182)"},"ID":18,"Name":"Rotate
+        Emoji","Instant":true,"EmojifaceMaterial":"CloseEye"},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(169.387024,127.777832)"},"ID":11,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(112.747131,214.574356)"},"ID":12,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(0,140)"},"ID":13,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-509.62912,118.84729)"},"ID":14,"Name":"Sequence","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.HasReceivedEvent","NodeData":{"Offset":"(-657.516052,105.2576)"},"ID":15,"Name":"Has
+        Received Event","Instant":true,"SharedStringeventName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"CallEvent"},"SharedVariablestoredValue1":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"_callEventBy","IsShared":true}},{"Type":"SetSlimeState","NodeData":{"Offset":"(-506.208984,120.051147)"},"ID":16,"Name":"Set
+        Slime State","Instant":true,"SlimeStateslimeState":"Acknowledge"},{"Type":"ShowOverheadModel","NodeData":{"Offset":"(-357.082275,114.450729)"},"ID":17,"Name":"Show
+        Overhead Model","Instant":true,"GameObjectoverheadModel":0},{"Type":"RotateToTarget","NodeData":{"Offset":"(-204.841934,120.474182)"},"ID":18,"Name":"Rotate
         To Target","Instant":true,"SharedTransformtargetTransform":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"_callEventBy","IsShared":true},"BooleanisSlowRotate":false},{"Type":"Follow","NodeData":{"Offset":"(-78.11389,123.3313)"},"ID":19,"Name":"Follow","Instant":true,"SharedTransformtarget":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"_callEventBy","IsShared":true},"Singledistance_min":5,"Singledistance_max":12},{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(30.7606659,119.514709)"},"ID":20,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(2.94625854,166.805511)"},"ID":21,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"IsWithinRange","NodeData":{"Offset":"(-150,110)"},"ID":22,"Name":"Is
         Within Range","Instant":true,"SharedTransformtargetTransform":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"_callEventBy","IsShared":true},"Singledistance":14},{"Type":"BehaviorDesigner.Runtime.Tasks.Parallel","NodeData":{"Offset":"(55.62622,154.832886)"},"ID":23,"Name":"Parallel","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.RandomSelector","NodeData":{"Offset":"(-154.373718,168.468872)"},"ID":24,"Name":"Random
         Selector","Instant":true,"Int32seed":0,"BooleanuseSeed":false,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-51.3435059,124.22644)"},"ID":25,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"ShowOverheadModel","NodeData":{"Offset":"(-122.555527,136.044312)"},"ID":26,"Name":"Show
         Overhead Model","Instant":true,"GameObjectoverheadModel":1},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(53.2020264,116.34729)"},"ID":27,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":8},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(130,250)"},"ID":28,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":6},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}}]},{"Type":"RotateToTarget","NodeData":{"Offset":"(0,140)"},"ID":29,"Name":"Rotate
-        To Target","Instant":true,"SharedTransformtargetTransform":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"_callEventBy","IsShared":true},"BooleanisSlowRotate":true}]}]}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-290,120)"},"ID":30,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"IsFloorState","NodeData":{"Offset":"(-80,120)"},"ID":31,"Name":"Is
-        Floor State","Instant":true,"FloorStatestate":"Music"},{"Type":"BehaviorDesigner.Runtime.Tasks.Parallel","NodeData":{"Offset":"(50,120)"},"ID":32,"Name":"Parallel","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Stationary","NodeData":{"Offset":"(-86.57318,117.686584)"},"ID":33,"Name":"Stationary","Instant":true}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-20,120)"},"ID":34,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"IsFloorState","NodeData":{"Offset":"(-77.48297,124.952332)"},"ID":35,"Name":"Is
-        Floor State","Instant":true,"FloorStatestate":"Move"},{"Type":"RotateUntilFloorDirection","NodeData":{"Offset":"(78.57141,115.714294)"},"ID":36,"Name":"Rotate
-        Until Floor Direction","Instant":true},{"Type":"MoveForwardUntileFloorNotMove","NodeData":{"Offset":"(288.5714,120)"},"ID":37,"Name":"Move
-        Forward Untile Floor Not Move","Instant":true}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(549.9998,140)"},"ID":38,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"IsState","NodeData":{"Offset":"(-78.40989,114.285667)"},"ID":39,"Name":"Is
-        State","Instant":true,"SlimeStatestate":"Idle"},{"Type":"BehaviorDesigner.Runtime.Tasks.RandomSelector","NodeData":{"Offset":"(50.00029,110)"},"ID":40,"Name":"Random
-        Selector","Instant":true,"Int32seed":0,"BooleanuseSeed":false,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-200,130)"},"ID":41,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"MoveForwards","NodeData":{"Offset":"(-330,170)"},"ID":42,"Name":"Move
-        Forwards","Instant":true,"Singledistance_min":0,"Singledistance_max":1,"BooleanisSearchingInteraction":true},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(-195.111542,171.763062)"},"ID":43,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0.4},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":3}},{"Type":"Stationary","NodeData":{"Offset":"(-46.66681,170)"},"ID":44,"Name":"Stationary","Instant":true},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(147.567444,170)"},"ID":45,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0.4},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":3}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(170.840332,130)"},"ID":46,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"RotateByAngle","NodeData":{"Offset":"(-60,170)"},"ID":47,"Name":"Rotate
-        By Angle","Instant":true,"Singleangle_min":-180,"Singleangle_max":180,"BooleanisSearchingInteraction":true},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(74.70587,170)"},"ID":48,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":3}}]}]}]}]}]}]}]},"DetachedTasks":[{"Type":"BehaviorDesigner.Runtime.Tasks.Log","NodeData":{"Offset":"(760,1040)"},"ID":49,"Name":"Log","Instant":true,"SharedStringtext":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"Slime
-        Music!"},"SharedBoollogError":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoollogTime":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}],"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"_callEventBy","IsShared":true}]}'
+        To Target","Instant":true,"SharedTransformtargetTransform":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"_callEventBy","IsShared":true},"BooleanisSlowRotate":true}]}]}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-227.500061,120)"},"ID":30,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"IsFloorState","NodeData":{"Offset":"(-113.333321,120)"},"ID":31,"Name":"Is
+        Floor State","Instant":true,"FloorStatestate":"Music"},{"Type":"SetSlimeState","NodeData":{"Offset":"(15.0710449,129.260742)"},"ID":32,"Name":"Set
+        Slime State","Instant":true,"SlimeStateslimeState":"Music"},{"Type":"BehaviorDesigner.Runtime.Tasks.Parallel","NodeData":{"Offset":"(149.999939,120)"},"ID":33,"Name":"Parallel","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"Stationary","NodeData":{"Offset":"(-86.57318,117.686584)"},"ID":34,"Name":"Stationary","Instant":true,"FloorStatecurrFloorState":"Move"}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(242.4998,120)"},"ID":35,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"IsFloorState","NodeData":{"Offset":"(-177.4829,124.952332)"},"ID":36,"Name":"Is
+        Floor State","Instant":true,"FloorStatestate":"Move"},{"Type":"RotateUntilFloorDirection","NodeData":{"Offset":"(-21.4285316,115.714294)"},"ID":37,"Name":"Rotate
+        Until Floor Direction","Instant":true},{"Type":"MoveForwardUntileFloorNotMove","NodeData":{"Offset":"(208.571457,120)"},"ID":38,"Name":"Move
+        Forward Untile Floor Not Move","Instant":true}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(711.666443,140)"},"ID":39,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"SetSlimeState","NodeData":{"Offset":"(-58.9386444,115.491821)"},"ID":40,"Name":"Set
+        Slime State","Instant":true,"SlimeStateslimeState":"Idle"},{"Type":"BehaviorDesigner.Runtime.Tasks.RandomSelector","NodeData":{"Offset":"(82.91783,123.513512)"},"ID":41,"Name":"Random
+        Selector","Instant":true,"Int32seed":0,"BooleanuseSeed":false,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-200,130)"},"ID":42,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"MoveForwards","NodeData":{"Offset":"(-330,170)"},"ID":43,"Name":"Move
+        Forwards","Instant":true,"Singledistance_min":0,"Singledistance_max":1,"BooleanisSearchingInteraction":true},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(-195.111542,171.763062)"},"ID":44,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0.4},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":3}},{"Type":"Stationary","NodeData":{"Offset":"(-46.66681,170)"},"ID":45,"Name":"Stationary","Instant":true,"FloorStatecurrFloorState":"Move"},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(147.567444,170)"},"ID":46,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0.4},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":3}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(170.840332,130)"},"ID":47,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"RotateByAngle","NodeData":{"Offset":"(-60,170)"},"ID":48,"Name":"Rotate
+        By Angle","Instant":true,"Singleangle_min":-180,"Singleangle_max":180,"BooleanisSearchingInteraction":true},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(74.70587,170)"},"ID":49,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":3}}]}]}]}]}]}]}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"_callEventBy","IsShared":true}]}'
       fieldSerializationData:
         typeName: []
         fieldNameHash: 
@@ -442,6 +442,10 @@ MonoBehaviour:
     floorState: 0
     direction: {x: 0, y: 0, z: 0, w: 0}
     debug: {fileID: 0}
+    dayTimeDebugMaterial: {fileID: 0}
+    nightTimeDebugMaterial: {fileID: 0}
+    dayTimeFloorState: 0
+    nightTimeFloorState: 0
   faceMaterial:
     idle: {fileID: 2100000, guid: d01c41bb9efce1f47a5e7695f2c74791, type: 2}
     closeEye: {fileID: 2100000, guid: d1b4ab18a3af3b5418308fda0dcf910d, type: 2}
@@ -504,13 +508,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6232444222569470551}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0.010000001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5838880080981088452}
+  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6736965146269986708
 GameObject:
@@ -538,7 +542,6 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6736965146269986708}
-  serializedVersion: 2
   m_LocalRotation: {x: -0.013545215, y: -0.7069769, z: 0.7069772, w: -0.013545229}
   m_LocalPosition: {x: -0.0000053727153, y: 0.0000000010342943, z: 0.018805759}
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
@@ -546,6 +549,7 @@ Transform:
   m_Children:
   - {fileID: 5926334314760700178}
   m_Father: {fileID: 1284290345660716173}
+  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &4044220758154587274
 BoxCollider:
@@ -643,13 +647,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6844805002546340246}
-  serializedVersion: 2
   m_LocalRotation: {x: -0.00000008099468, y: -4.1172415e-14, z: 7.280857e-12, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 0.9999999, z: 0.9999999}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2778402326366525159}
+  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &343094348750033741
 SkinnedMeshRenderer:
@@ -737,7 +741,6 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7807441383986691859}
-  serializedVersion: 2
   m_LocalRotation: {x: 0.4942217, y: 0.50571215, z: -0.50571144, w: 0.49422273}
   m_LocalPosition: {x: -0.008810031, y: -1.5749918e-10, z: 0.009935527}
   m_LocalScale: {x: 1, y: 1, z: 1.0000001}
@@ -745,6 +748,7 @@ Transform:
   m_Children:
   - {fileID: 1106985762456034569}
   m_Father: {fileID: 1284290345660716173}
+  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1215932221217970640
 BoxCollider:
@@ -830,7 +834,7 @@ GameObject:
   - component: {fileID: 2712529081307473343}
   - component: {fileID: 4950918525662539773}
   - component: {fileID: 4466336430244923960}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: AreaOfInterest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -844,13 +848,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8072462855084327197}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2778402326366525159}
+  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &2712529081307473343
 SphereCollider:
@@ -939,13 +943,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8308295147735085930}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2432104388980322593}
+  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8475342853656533952
 GameObject:
@@ -970,13 +974,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8475342853656533952}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0.009999999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8743236602000829512}
+  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8611036093004740442
 GameObject:
@@ -1001,13 +1005,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8611036093004740442}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8242860367599665274}
+  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8642692675498088740
 GameObject:
@@ -1032,13 +1036,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8642692675498088740}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0.010000001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2650763835508465314}
+  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8676685291129494174
 GameObject:
@@ -1063,13 +1067,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8676685291129494174}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3357758416856142261}
+  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8810873607772419035
 GameObject:
@@ -1097,7 +1101,6 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8810873607772419035}
-  serializedVersion: 2
   m_LocalRotation: {x: 0.70709145, y: 0.004670849, z: -0.004670881, w: 0.7070913}
   m_LocalPosition: {x: -1.4380974e-12, y: 7.382787e-12, z: 0.009391753}
   m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1}
@@ -1106,6 +1109,7 @@ Transform:
   - {fileID: 9160277603771288204}
   - {fileID: 8476892210243087125}
   m_Father: {fileID: 1284290345660716173}
+  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &3211847221179379872
 Rigidbody:
@@ -1202,7 +1206,6 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9060347455268330668}
-  serializedVersion: 2
   m_LocalRotation: {x: 0.000002056146, y: 0.9999135, z: 0.01315472, w: 0.00015639947}
   m_LocalPosition: {x: 0.000032114145, y: -0.0091521805, z: 0.009968131}
   m_LocalScale: {x: 1, y: 1.0000001, z: 1.0000001}
@@ -1210,6 +1213,7 @@ Transform:
   m_Children:
   - {fileID: 7247904264236441283}
   m_Father: {fileID: 1284290345660716173}
+  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &718306665140199162
 BoxCollider:
@@ -1310,7 +1314,6 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9156102087222110065}
-  serializedVersion: 2
   m_LocalRotation: {x: 0.008836931, y: 0.70705163, z: 0.7070515, w: -0.008836576}
   m_LocalPosition: {x: 0.000005738998, y: -0.0000000013757074, z: 0.0008687043}
   m_LocalScale: {x: 1, y: 1.0000002, z: 1}
@@ -1318,6 +1321,7 @@ Transform:
   m_Children:
   - {fileID: 7771292050647430751}
   m_Father: {fileID: 1284290345660716173}
+  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1340917921654850241
 BoxCollider:

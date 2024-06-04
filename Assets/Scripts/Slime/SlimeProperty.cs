@@ -5,7 +5,8 @@ using UnityEngine.UI;
 public enum SlimeState{
     Idle,
     Chat,
-    Music
+    Music,
+    Acknowledge
 }
 public enum Emoji{
     Idle,
@@ -77,6 +78,5 @@ public class SlimeProperty : MonoBehaviour
         foundInteractTarget = fieldOfView.foundTarget;
         currGrid = gridManager.GetFloorGrid(new Vector3(transform.position.x, 1, transform.position.z));
     }
-
     
 }

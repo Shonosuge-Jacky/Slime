@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: musicBox
+  m_Name: musicBox 3
   m_Shader: {fileID: 4800000, guid: fd0e516f20093b644a7045780b1b18e6, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -71,7 +71,8 @@ Material:
     - _ExternalColor: 0.8
     - _ExternalLightRange: 10
     - _FadeDensity: 0.25
-    - _FadeRange: 5
+    - _FadeOffset: 1
+    - _FadeRange: 3
     - _FadeRatio: 0.5
     - _GlossMapScale: 1
     - _Glossiness: 0.05
@@ -94,9 +95,9 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _AmbientColor: {r: 0.4, g: 0.4, b: 0.4, a: 1}
-    - _Color: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 1}
+    - _Color: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OutlineColor: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 1}
+    - _OutlineColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecularColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
   m_BuildTextureStacks: []

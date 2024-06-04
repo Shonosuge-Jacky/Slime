@@ -3,6 +3,7 @@ using UnityEngine;
 
 [TaskCategory("SlimeAction")]
 [TaskDescription("Keep Rotating until reach floor direction. Returns Success.")]
+// [TaskIcon("")]
 public class RotateUntilFloorDirection : SlimeAction
 {
     private Quaternion target;

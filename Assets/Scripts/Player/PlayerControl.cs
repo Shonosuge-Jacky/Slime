@@ -25,10 +25,12 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
-        CheckMove();
-        // isGrounded = Physics.Raycast(transform.position, -Vector3.up, 6.1f);
-        if(Input.GetKeyDown(KeyCode.L)){
-            CallSlime();
+        if(GameManager.Instance.isControlable){
+            CheckMove();
+            // isGrounded = Physics.Raycast(transform.position, -Vector3.up, 6.1f);
+            if(Input.GetKeyDown(KeyCode.L)){
+                CallSlime();
+            }
         }
     }
     private void LateUpdate() {

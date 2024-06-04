@@ -6,6 +6,7 @@ using UnityEngine;
 public class IsState : SlimeCondition
 {
     [SerializeField] SlimeState state;
+    
     public override TaskStatus OnUpdate()
     {
         return myProperty.slimeState == state ? TaskStatus.Success : TaskStatus.Failure;

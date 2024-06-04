@@ -1,7 +1,7 @@
 using UnityEngine;
 using DG.Tweening;
 
-public class MouseLock : MonoBehaviour
+public class PlayerCamera : MonoBehaviour
 {
     [Header("Property")]
     public float standingY = 0;
@@ -13,18 +13,26 @@ public class MouseLock : MonoBehaviour
     public float newFieldOfView = 50;
     [Header("Variable")]
     public Transform playerTransform;
+
+    [Header("Raycast")]
+    [SerializeField] RaycastHit HitInfo;
+    public LayerMask mask;
+    public float spectateDistance;
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateCursorRotation();
-        CheckCrouch();
-        CheckZoom();
+        if(GameManager.Instance.isControlable){
+            UpdateCursorRotation();
+            CheckCrouch();
+            CheckZoom();
+            CheckInteractRaycast();
+        }
+        
     }
 
     void UpdateCursorRotation(){
@@ -39,9 +47,9 @@ public class MouseLock : MonoBehaviour
     }
 
     void CheckCrouch(){
-        if(Input.GetKey(KeyCode.LeftShift)){
+        if(Input.GetKeyDown(KeyCode.LeftShift)){
             transform.DOLocalMoveY(crouchingY, 0.7f);
-        }else{
+        }else if(Input.GetKeyUp(KeyCode.LeftShift)){
             transform.DOLocalMoveY(standingY, 0.7f);
         }
     }
@@ -54,6 +62,17 @@ public class MouseLock : MonoBehaviour
             newFieldOfView = fieldOfViewChange;
         }
         GetComponent<Camera>().DOFieldOfView(newFieldOfView, 0.3f);
+    }
+
+    void CheckInteractRaycast(){
+        Debug.DrawRay(transform.position, transform.forward * 100.0f, Color.yellow);
+        if(Physics.Raycast(transform.position,transform.forward, out HitInfo, spectateDistance, mask)){
+            GameManager.Instance.UIManager.UpdateSlimeInfoPanelState(HitInfo.transform.parent.parent.GetComponent<SlimeProperty>().slimeState);
+            GameManager.Instance.UIManager.SetPointing(true);
+        }else{
+            GameManager.Instance.UIManager.SetPointing(false);
+        }
+            
     }
 
 }

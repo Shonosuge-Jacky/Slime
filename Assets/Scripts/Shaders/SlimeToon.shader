@@ -159,7 +159,7 @@ Shader "Custom/Slime Toon Shader"
 
                 float3 halfVector = normalize(_WorldSpaceLightPos0 + i.viewDir);
 				float specular =  pow( DotClamped(halfVector, i.normal), _Smoothness * 500);
-                float specularLight = specular > _SpecularLightRange? _SpecularColor * (_LightColor0 - (0.43, 0.43, 0.43)) * 2  : 0;
+                float specularLight = specular > _SpecularLightRange? ( _SpecularColor * (_LightColor0 - (0.43, 0.43, 0.43)) * 2 ) : 0;
 
 				float diffuse = DotClamped(_WorldSpaceLightPos0, i.normal);
                 float diffuseLight = diffuse > _DiffuseLightRange? _DiffuseColor * _LightColor0 : 0;
@@ -241,9 +241,9 @@ Shader "Custom/Slime Toon Shader"
 
                 i.normal = normalize(i.normal);
                 float3 lightDir = _WorldSpaceLightPos0 - i.worldPosition;
-                float3 lightDistance = _WorldSpaceLightPos0 - i.worldPosition;
+                float lightDistance = 1 / distance(_WorldSpaceLightPos0.xz, i.worldPosition.xz);
                 float3 diffuse = _LightColor0 * DotClamped(lightDir, i.normal);
-                float3 diffuseLight = diffuse > _ExternalLightRange ? _ExternalColor : 0;
+                float3 diffuseLight = diffuse > _ExternalLightRange ? _ExternalColor * lightDistance : 0;
                 return float4(diffuseLight , 1);
             }
 

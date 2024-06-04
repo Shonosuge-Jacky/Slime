@@ -1,8 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using BehaviorDesigner.Runtime.Tasks.Unity.Math;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum DayNight{
     Day,
@@ -38,8 +36,9 @@ public struct TimeVariable{
         if(currHour_12 == 11){
             currAMPM = currAMPM == AMPM.AM? AMPM.PM : AMPM.AM;
         }
-        if(currHour_12 == 6){
+        if(currHour_12 == 5){
             currDayNight = currDayNight == DayNight.Day? DayNight.Night : DayNight.Day;
+            Debug.Log("TriggerDayNightChangeEvent " + currDayNight);
             daynightEvent.TriggerDayNightChangeEvent(currDayNight);
         }
         currHour_12 = currHour_12 == 12? 1 : currHour_12 + 1;
@@ -67,16 +66,17 @@ public class TimeManager : MonoBehaviour
     void Update()
     {
         UpdateTimeSystem();
+        
     }
     
     void UpdateTimeSystem(){
-        currTime.currHourMin_24 = currTime.currHour_24 + currTime.currMinutes / 60f;
         currTime.AddMinutes(timeSpeed * Time.deltaTime);
+        currTime.currHourMin_24 = currTime.currHour_24 + currTime.currMinutes / 60f;
+        
         xRotation = currTime.currHourMin_24 / 24f * 360 - 90;
         gamelight.transform.localRotation = Quaternion.Euler(xRotation, 45f, 0f);
-        // gamelight.intensity = currTime.currDayNight == DayNight.Night ? nightLightIntensity : 1f;
 
-        // if(currTime.)
+
         if(currTime.currHour_24 < 5){
             gamelight.intensity = nightLightIntensity;
         }else if(5 <= currTime.currHour_24 && currTime.currHour_24 < 9){
@@ -88,7 +88,12 @@ public class TimeManager : MonoBehaviour
         }else{
             gamelight.intensity = nightLightIntensity;
         }
-        // Debug.Log(gamelight.intensity);
+
+        GameManager.Instance.UIManager.clock.text = currTime.currHour_24.ToString().PadLeft(2, '0') + ":" + ((int)currTime.currMinutes).ToString().PadLeft(2, '0');
         
+    }
+
+    public void ChangeTimeSpeed(Slider timeSpeedSlider){
+        timeSpeed = timeSpeedSlider.value;
     }
 }
