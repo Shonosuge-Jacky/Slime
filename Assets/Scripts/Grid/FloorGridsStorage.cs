@@ -1,12 +1,8 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Mathematics;
 
-public enum FloorState{
-    Move,
-    Idle,
-    Music
-}
 
 [Serializable]
 public class FloorGrid{
@@ -16,15 +12,14 @@ public class FloorGrid{
     public GameObject debug;
     public Material dayTimeDebugMaterial;
     public Material nightTimeDebugMaterial;
-    public FloorState dayTimeFloorState;
-    public FloorState nightTimeFloorState;
+    public DayNightFloorState dayNightFloorState;
     public FloorGrid(Vector3Int cellPosition, FloorState floorState, Quaternion direction, GameObject debug){
         this.cellPosition = cellPosition;
         this.floorState = floorState;
         this.direction = direction;
         this.debug = debug;
-        dayTimeFloorState = FloorState.Idle;
-        nightTimeFloorState = FloorState.Idle;
+        dayNightFloorState.dayTimeFloorState = FloorState.Idle;
+        dayNightFloorState.nightTimeFloorState = FloorState.Idle;
     }
 
     public void SetFloorState(FloorState floorState){
@@ -32,8 +27,8 @@ public class FloorGrid{
     }
     public void SetFloorState(FloorState dayTimeFloorState, FloorState nightTimeFloorState){
         floorState = dayTimeFloorState;
-        this.dayTimeFloorState = dayTimeFloorState;
-        this.nightTimeFloorState = nightTimeFloorState;
+        this.dayNightFloorState.dayTimeFloorState = dayTimeFloorState;
+        this.dayNightFloorState.nightTimeFloorState = nightTimeFloorState;
     }
     public void SetDirection(Quaternion direction){
         this.direction = direction;
@@ -41,7 +36,7 @@ public class FloorGrid{
 
     public void OnDayNightChange(DayNight daynight){
         // Debug.Log(cellPosition.ToString() + "Day Night Change, now " + daynight.ToString());
-        floorState = daynight == DayNight.Day? dayTimeFloorState : nightTimeFloorState;
+        floorState = daynight == DayNight.Day? dayNightFloorState.dayTimeFloorState : dayNightFloorState.nightTimeFloorState;
         debug.GetComponent<Renderer>().material = daynight == DayNight.Day ? dayTimeDebugMaterial : nightTimeDebugMaterial;
     }
 }
@@ -51,6 +46,7 @@ public class FloorGridsStorage : ScriptableObject
 {
     Dictionary<Vector3Int, FloorGrid> floorStates = new Dictionary<Vector3Int, FloorGrid>();
     [SerializeField] List<FloorGrid> floorStates_List = new List<FloorGrid>();
+
 
     public void AddFloorGrid(Vector3Int cellPosition, GameObject debug){
         FloorGrid newFloorGrid = new FloorGrid(cellPosition, FloorState.Idle, Quaternion.identity, debug);
@@ -69,6 +65,13 @@ public class FloorGridsStorage : ScriptableObject
     public FloorState GetFloorState(Vector3Int cellPosition){
         return floorStates[cellPosition].floorState;
     }
+    public DayNightFloorState GetDayNightFloorState(Vector3Int cellPosition){
+        return floorStates[cellPosition].dayNightFloorState;
+    }
+    public Quaternion GetFloorDirection(Vector3Int cellPosition){
+        return floorStates[cellPosition].direction;
+    }
+    
     public void SetFloorState(Vector3Int cellPosition, FloorState state){
         floorStates[cellPosition].floorState = state;
         floorStates[cellPosition].direction = Quaternion.identity;
@@ -79,24 +82,17 @@ public class FloorGridsStorage : ScriptableObject
     }
     public void SetFloorState(Vector3Int cellPosition, FloorState dayTimeState, FloorState nightTimeState){
         floorStates[cellPosition].floorState = dayTimeState;
-        floorStates[cellPosition].dayTimeFloorState = dayTimeState;
-        floorStates[cellPosition].nightTimeFloorState = nightTimeState;
+        floorStates[cellPosition].dayNightFloorState.dayTimeFloorState = dayTimeState;
+        floorStates[cellPosition].dayNightFloorState.nightTimeFloorState = nightTimeState;
         floorStates[cellPosition].direction = Quaternion.identity;
     }
     public void SetFloorState(Vector3Int cellPosition, FloorState dayTimeState, FloorState nightTimeState, Vector3 direction){
         floorStates[cellPosition].floorState = dayTimeState;
-        floorStates[cellPosition].dayTimeFloorState = dayTimeState;
-        floorStates[cellPosition].nightTimeFloorState = nightTimeState;
+        floorStates[cellPosition].dayNightFloorState.dayTimeFloorState = dayTimeState;
+        floorStates[cellPosition].dayNightFloorState.nightTimeFloorState = nightTimeState;
         floorStates[cellPosition].direction = Quaternion.LookRotation(direction);
     }
 
-    
-    
-    public Quaternion GetFloorDirection(Vector3Int cellPosition){
-        return floorStates[cellPosition].direction;
-    }
-
-    
     public void SetFloorDebug(Vector3Int cellPosition, Material material){
         floorStates[cellPosition].debug.GetComponent<Renderer>().material = material;
         // if(floorStates[cellPosition].floorState == FloorState.Move){
@@ -125,7 +121,30 @@ public class FloorGridsStorage : ScriptableObject
             floorStates_List.Add(entry.Value);
         }
     }
+
+
+    public Dictionary<float2,DayNightFloorState>  GetProcessedDayNightFloorStates(){
+        Dictionary<float2,DayNightFloorState> m_dict = new Dictionary<float2,DayNightFloorState>();
+        for(int i = 0; i < 100; i++){
+            for(int j = 0; j < 100; j++){
+                m_dict[new float2(i, j)] = floorStates[new Vector3Int(i, j, 0)].dayNightFloorState;
+            }
+        }
+        return m_dict;
+    }
 }
 
 
 
+
+
+public enum FloorState{
+    Move,
+    Idle,
+    Music
+}
+
+public struct DayNightFloorState{
+    public FloorState dayTimeFloorState;
+    public FloorState nightTimeFloorState;
+}

@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public UIManager UIManager { get; private set; }
 
+    public GameData InitializationGameData;
     public bool isControlable;
 
     private void Awake()
@@ -21,4 +22,9 @@ public class GameManager : MonoBehaviour
 
         UIManager = GetComponentInChildren<UIManager>();
     }
+
+    void InitialGameData(GameData m_GameData){
+        GameDataCenter._GameData = m_GameData;
+    }
+
 }

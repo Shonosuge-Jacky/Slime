@@ -1,8 +1,11 @@
 
+using Unity.Entities;
 using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
+    public static GridManager Instance {get; private set;}
+
     [System.Serializable]
     public struct Debugs{
         public GameObject debugPrefab;
@@ -63,6 +66,8 @@ public class GridManager : MonoBehaviour
         AddObjectInGrid(70, 70, streeLightObject);
         floorGridsStorage.DictionaryToList();
         SetFloorBorder(100);
+
+        InitiateGridDataAuthoring();
     }
 
     public void AddObjectInGrid(int x, int z, FloorGameObject floorGameObject){
@@ -131,5 +136,14 @@ public class GridManager : MonoBehaviour
     public FloorGrid GetFloorGrid(Vector3 position){
         return floorGridsStorage.GetFloorGrid(grid.WorldToCell(position));
     }
+
+
+    private void InitiateGridDataAuthoring(){
+        GridDataSystem gridDataSystem = World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<GridDataSystem>();
+        Debug.Log("---" + gridDataSystem);
+        // gridDataSystem.RecordGridData(floorGridsStorage.GetDayNightFloorState);
+    }
+
+    
 
 }

@@ -17,3 +17,8 @@ public class FloorGameObject : ScriptableObject
     public FloorState nighttimeFloorState;
     // 
 }
+
+public enum FloorGameObjectType{
+    Jukebox,
+    StreetLight
+}

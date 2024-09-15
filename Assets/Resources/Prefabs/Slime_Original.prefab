@@ -444,11 +444,9 @@ MonoBehaviour:
     debug: {fileID: 0}
     dayTimeDebugMaterial: {fileID: 0}
     nightTimeDebugMaterial: {fileID: 0}
-    dayTimeFloorState: 0
-    nightTimeFloorState: 0
   faceMaterial:
-    idle: {fileID: 2100000, guid: d01c41bb9efce1f47a5e7695f2c74791, type: 2}
-    closeEye: {fileID: 2100000, guid: d1b4ab18a3af3b5418308fda0dcf910d, type: 2}
+    idle: {fileID: 2100000, guid: a4f637455dffa0e439d9a7ab64a6612a, type: 2}
+    closeEye: {fileID: 2100000, guid: 8c439e1c13e589048a7a9f69cfe0993a, type: 2}
     mad: {fileID: 2100000, guid: 0957c038cc0d6474d8ff5a76bc96f8e7, type: 2}
     excited: {fileID: 2100000, guid: 6c5679e448e36624cadac08cfc23433f, type: 2}
     confused: {fileID: 2100000, guid: 2bd9b86ddf4aa604c9160052aae7a8d9, type: 2}
@@ -675,7 +673,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d01c41bb9efce1f47a5e7695f2c74791, type: 2}
+  - {fileID: 2100000, guid: 1ae39597ca7e1934bacbd5d9c3738a63, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
