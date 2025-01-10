@@ -11,7 +11,7 @@ public class RotateUntilFloorDirection : SlimeAction
     public override void OnStart()
     {
         isFinished = false;
-        target = myProperty.currGrid.direction;
+        target = myProperty.currGridDatum.Direction;
     }
 
     public override TaskStatus OnUpdate()

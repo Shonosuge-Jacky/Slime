@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
@@ -6,11 +5,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "FloorSetting", menuName = "ScriptableObjects/FloorSetting")]
 public class FloorSetting: ScriptableObject
 {
-    public int minX;
-    public int minY;
-    public int maxX;
-    public int maxY;
-    public List<FloorObjectSetting> floorObjects;
+    public int MinX;
+    public int MinY;
+    public int MaxX;
+    public int MaxY;
+
+    public List<FloorObjectSetting> FloorObjects;
 }
 
 [Serializable]

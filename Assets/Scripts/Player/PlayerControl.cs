@@ -14,6 +14,8 @@ public class PlayerControl : MonoBehaviour
     // public float midAirGravity = 10;
     // public float fallGravity = 16;
     public bool isGrounded;
+    public Transform inspectPosition;
+    public Transform explorePosition;
     Vector3 change;
     PlayerAreaOfInterest areaOfInterest;
     
@@ -21,16 +23,31 @@ public class PlayerControl : MonoBehaviour
 
     private void Awake() {
         areaOfInterest = transform.GetChild(0).GetComponent<PlayerAreaOfInterest>();
+        EventCenter.Instance.AddEventListener(EventType.ChangeGameModeToInspect, ()=>SetPosition(inspectPosition));
+        EventCenter.Instance.AddEventListener(EventType.ChangeGameModeToExplore, ()=>SetPosition(explorePosition));
+    }
+    private void Start() {
+        if(GameManager.Instance.CurrGameMode == GameMode.Inspect){
+            SetPosition(inspectPosition);
+        }else{
+            SetPosition(explorePosition);
+        }
     }
 
     void Update()
     {
         if(GameManager.Instance.isControlable){
             CheckMove();
-            // isGrounded = Physics.Raycast(transform.position, -Vector3.up, 6.1f);
-            if(Input.GetKeyDown(KeyCode.L)){
-                CallSlime();
+            if(GameManager.Instance.CurrGameMode == GameMode.Explore){
+                // isGrounded = Physics.Raycast(transform.position, -Vector3.up, 6.1f);
+                if(Input.GetKeyDown(KeyCode.L)){
+                    CallSlime();
+                }
+            }else{
+                // Debug.Log("CheckUpDown");
+                CheckUpDown();
             }
+            
         }
     }
     private void LateUpdate() {
@@ -41,6 +58,17 @@ public class PlayerControl : MonoBehaviour
         change = transform.right * Input.GetAxisRaw("Horizontal") + transform.forward * Input.GetAxisRaw("Vertical");
         transform.position += change * speed * Time.deltaTime;
     }
+    void CheckUpDown(){
+        Debug.Log(Input.GetAxisRaw("Jump"));
+        change = transform.up * Input.GetAxisRaw("Jump");
+        Debug.Log("change" + change);
+        transform.position += change * speed * Time.deltaTime;
+    }
+
+    void SetPosition(Transform position){
+        transform.position = position.position;
+    }
+
     // void UpdateMovePosition(){
     //     change = transform.right * Input.GetAxisRaw("Horizontal") + transform.forward * Input.GetAxisRaw("Vertical");
     //     controller.Move(change * speed * Time.deltaTime);

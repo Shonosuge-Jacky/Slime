@@ -3,23 +3,18 @@ using UnityEngine;
 
 public class SpawnerAuthoring : MonoBehaviour
 {
-    public GameObject prefab;
     public class Baker : Baker<SpawnerAuthoring> {
         public override void Bake(SpawnerAuthoring authoring)
         {
-            
-            Debug.Log(GameDataCenter._GameData._SlimeAmount);
-            Debug.Log(authoring.prefab);
-            Debug.Log(GameDataCenter._GameData._SlimePrefabECS);
-            Debug.Log(authoring.prefab == GameDataCenter._GameData._SlimePrefabECS);
             Entity entity = GetEntity(TransformUsageFlags.None);
             AddComponent(entity, new SpawnerConfig{
-                SlimePrefab = GetEntity(authoring.prefab, TransformUsageFlags.Dynamic),
-                Amount = 100,
-                MinX = 1,
-                MinY = 1,
-                MaxX = 100,
-                MaxY = 100
+                SlimePrefab = GetEntity(GameDataCenter._SlimePrefabECS, TransformUsageFlags.Dynamic),
+                EmptyPrefab = GetEntity(GameDataCenter._EmptyPrefabECS, TransformUsageFlags.None),
+                Amount = GameDataCenter._SlimeAmount,
+                MinX = GameDataCenter._FloorSetting.MinX,
+                MinY = GameDataCenter._FloorSetting.MinY,
+                MaxX = GameDataCenter._FloorSetting.MaxX,
+                MaxY = GameDataCenter._FloorSetting.MaxY,
             });
         }
     };
@@ -28,10 +23,10 @@ public class SpawnerAuthoring : MonoBehaviour
 
 public struct SpawnerConfig : IComponentData{
     public Entity SlimePrefab;
+    public Entity EmptyPrefab;
     public int Amount;
     public int MinX;
     public int MinY;
     public int MaxX;
     public int MaxY;
-
 }

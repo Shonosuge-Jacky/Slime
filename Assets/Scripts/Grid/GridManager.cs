@@ -1,6 +1,7 @@
 
 using Unity.Entities;
 using UnityEngine;
+using Unity.Mathematics;
 
 public class GridManager : MonoBehaviour
 {
@@ -67,7 +68,7 @@ public class GridManager : MonoBehaviour
         floorGridsStorage.DictionaryToList();
         SetFloorBorder(100);
 
-        InitiateGridDataAuthoring();
+        // InitiateGridDataAuthoring();
     }
 
     public void AddObjectInGrid(int x, int z, FloorGameObject floorGameObject){
@@ -137,12 +138,27 @@ public class GridManager : MonoBehaviour
         return floorGridsStorage.GetFloorGrid(grid.WorldToCell(position));
     }
 
-
-    private void InitiateGridDataAuthoring(){
-        GridDataSystem gridDataSystem = World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<GridDataSystem>();
-        Debug.Log("---" + gridDataSystem);
-        // gridDataSystem.RecordGridData(floorGridsStorage.GetDayNightFloorState);
+    public FloorState GetFloorState(Vector3 position){
+        if(GridDataSystem.GetNativeHashMap().ContainsKey(new int2((int)position.x, (int)position.z))){
+            return GridDataSystem.GetNativeHashMap()[new int2((int)position.x, (int)position.z)].State;
+        }else{
+            return FloorState.Idle;
+        }
     }
+    public GridDatum GetFloorGridDatum(Vector3 position){
+        if(GridDataSystem.GetNativeHashMap().ContainsKey(new int2((int)position.x, (int)position.z))){
+            return GridDataSystem.GetNativeHashMap()[new int2((int)position.x, (int)position.z)];
+        }else{
+            return new GridDatum(FloorState.Idle);
+        }
+    }
+
+
+    // private void InitiateGridDataAuthoring(){
+    //     GridDataSystem gridDataSystem = World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<GridDataSystem>();
+    //     Debug.Log("---" + gridDataSystem);
+    //     // gridDataSystem.RecordGridData(floorGridsStorage.GetDayNightFloorState);
+    // }
 
     
 

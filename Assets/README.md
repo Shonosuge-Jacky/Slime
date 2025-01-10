@@ -1,7 +1,15 @@
 # SLIME Progress and Markdown
 
-## CurrentLog
-16/9/2024
+## Current Log
+#### 6/10/2024
+Successfully made a event component in GameModeSystem from GameManager. Now use codemonkey method deal with event in system.
+
+#### 26/9/2024
+Problem: SlimeComponent not initiaize correctly(See isAvailable)  ->  SlimeSystem not work
+Try Method:
+Initialize SlimeComponent in SpawnerSystem instead of Baker? (Check what baker is for in correct scenerio)
+
+#### 16/9/2024
 Try Method:
 Change all data in DataCenter to static. <br/>
 Reference: https://discussions.unity.com/t/what-should-i-be-aware-of-if-i-use-a-static-class/916207/6 <br/>
@@ -85,6 +93,7 @@ Update Float2ToState
 (Do Once Eveny Time Receive Event - DayNightEvent)
 
 PlaceItem
+(?: Int2ToFloorGameObject)
 
 (Do Once Only At Initialization)
 

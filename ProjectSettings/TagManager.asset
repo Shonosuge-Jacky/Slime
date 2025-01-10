@@ -7,6 +7,8 @@ TagManager:
   - Slime
   - SlimeArmature
   - Ground
+  - SlimeParent
+  - SlimeProperty
   layers:
   - Default
   - TransparentFX

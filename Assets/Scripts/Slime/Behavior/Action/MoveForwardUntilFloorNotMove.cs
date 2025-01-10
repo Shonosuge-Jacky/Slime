@@ -17,10 +17,8 @@ public class MoveForwardUntileFloorNotMove : SlimeAction
                 myRigidbody.velocity.y+ myProperty.jumpForce + Random.Range(0,20), 
                 myRigidbody.velocity.z );
         }
-        isFinished = myProperty.currGrid.floorState != FloorState.Move;
+        isFinished = myProperty.currGridDatum.State != FloorState.Move;
         return isFinished && myProperty.groundCheck.isGround? TaskStatus.Success : TaskStatus.Running;
     }
-    public override void OnEnd()
-    {
-    }
+
 }

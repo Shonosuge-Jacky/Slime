@@ -8,7 +8,7 @@ public class IsFloorState : SlimeCondition
     [SerializeField] FloorState state;
     public override TaskStatus OnUpdate()
     {
-        return myProperty.currGrid.floorState == state ? TaskStatus.Success : TaskStatus.Failure;
+        return myProperty.currGridDatum.State == state ? TaskStatus.Success : TaskStatus.Failure;
     }
     public override void OnEnd()
     {

@@ -17,6 +17,7 @@ public class Stationary : SlimeAction
         // }
         if(myProperty.groundCheck.isGround){
             myRigidbody.velocity = Vector3.zero;
+            transform.rotation = Quaternion.identity;
             return TaskStatus.Success;
         }else{
             return TaskStatus.Running;

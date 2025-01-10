@@ -11,6 +11,7 @@ public class PlayerCamera : MonoBehaviour
     public float sensitivity = 100f;
     float xRotation = 0f;
     public float newFieldOfView = 50;
+    public float moveSpeed = 5f;
     [Header("Variable")]
     public Transform playerTransform;
 
@@ -21,6 +22,8 @@ public class PlayerCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // EventCenter.Instance.AddEventListener(EventType.ChangeGameModeToInspect, ()=>{gameObject.transform.eulerAngles = new Vector3(180,0,0);});
+        // EventCenter.Instance.AddEventListener(EventType.ChangeGameModeToExplore, ()=>{gameObject.transform.eulerAngles = new Vector3(0,0,0);});
     }
 
     // Update is called once per frame
@@ -28,10 +31,14 @@ public class PlayerCamera : MonoBehaviour
     {
         if(GameManager.Instance.isControlable){
             UpdateCursorRotation();
-            CheckCrouch();
+            if(GameManager.Instance.CurrGameMode == GameMode.Explore)
+            {
+                CheckCrouch();
+                CheckInteractRaycast();
+            }
             CheckZoom();
-            CheckInteractRaycast();
         }
+        
         
     }
 
@@ -48,9 +55,9 @@ public class PlayerCamera : MonoBehaviour
 
     void CheckCrouch(){
         if(Input.GetKeyDown(KeyCode.LeftShift)){
-            transform.DOLocalMoveY(crouchingY, 0.7f);
+            transform.DOLocalMoveY(crouchingY, 0.5f);
         }else if(Input.GetKeyUp(KeyCode.LeftShift)){
-            transform.DOLocalMoveY(standingY, 0.7f);
+            transform.DOLocalMoveY(standingY, 0.5f);
         }
     }
     void CheckZoom(){

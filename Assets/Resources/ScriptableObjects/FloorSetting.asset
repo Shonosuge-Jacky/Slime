@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f2f7925b8a3b2c45a71a26ad3b708cd, type: 3}
   m_Name: FloorSetting
   m_EditorClassIdentifier: 
-  minX: 1
-  minY: 1
-  maxX: 100
-  maxY: 100
-  floorObjects:
+  MinX: 1
+  MinY: 1
+  MaxX: 100
+  MaxY: 100
+  FloorObjects:
   - X: 20
     Y: 20
     FloorGameObjectType: 0
@@ -28,10 +28,10 @@ MonoBehaviour:
     FloorGameObjectType: 0
   - X: 10
     Y: 50
-    FloorGameObjectType: 0
+    FloorGameObjectType: 1
   - X: 70
     Y: 10
-    FloorGameObjectType: 0
+    FloorGameObjectType: 1
   - X: 70
     Y: 70
-    FloorGameObjectType: 0
+    FloorGameObjectType: 1

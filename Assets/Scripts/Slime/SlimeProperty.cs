@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -39,7 +40,9 @@ public class SlimeProperty : MonoBehaviour
     public GroundCheck groundCheck;
     public Emoji emoji;
     public bool foundInteractTarget;
-    public FloorGrid currGrid;
+    public FloorGrid currGrid;      //no use? (old system)
+    // public FloorState currFloorState;
+    public GridDatum currGridDatum;
 
     [Header("Variables")]
     public FaceMaterial faceMaterial;
@@ -76,7 +79,12 @@ public class SlimeProperty : MonoBehaviour
     private void Update() {
         root.transform.position = new Vector3(transform.position.x, root.transform.position.y, transform.position.z);
         foundInteractTarget = fieldOfView.foundTarget;
-        currGrid = gridManager.GetFloorGrid(new Vector3(transform.position.x, 1, transform.position.z));
+        currGridDatum = gridManager.GetFloorGridDatum(new Vector3(transform.position.x, 1, transform.position.z));
+    }
+
+    public void Instantiate(float3 position, SlimeState state){
+        transform.position = position;
+        slimeState = state;
     }
     
 }
