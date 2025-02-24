@@ -59,9 +59,7 @@ public class PlayerControl : MonoBehaviour
         transform.position += change * speed * Time.deltaTime;
     }
     void CheckUpDown(){
-        Debug.Log(Input.GetAxisRaw("Jump"));
         change = transform.up * Input.GetAxisRaw("Jump");
-        Debug.Log("change" + change);
         transform.position += change * speed * Time.deltaTime;
     }
 
