@@ -227,7 +227,7 @@ Shader "Custom/URP/SimpleURPToonLitExample(With Outline)"
         _ReceiveShadowMappingPosOffset("    Depth Bias", Float) = 0
 
         [Header(Outline)]
-        _OutlineWidth("Width", Range(0,4)) = 1
+        _OutlineWidth("Width", Range(0,100)) = 1
         _OutlineColor("Color", Color) = (0.5,0.5,0.5,1)
         
         [Header(Outline ZOffset)]

@@ -34,6 +34,8 @@ public class UIStateMachine : MonoBehaviour
     }
 
     public void SwitchState(UIState state){
+        GameManager.Instance.isControlable = true;
+        GameManager.Instance.isPausable = true;
         // enterStateEvent.AddListener(()=>ReceivedEvent(state));
         currentState.OnExit();
         //Enter Loading State
@@ -42,7 +44,13 @@ public class UIStateMachine : MonoBehaviour
         }else{
             currentState = new ExploreUIState();
         }
-        GameManager.Instance.CloseSettingPannel = true;
+
+
+        if(UIManager.Instance.settingObject.activeSelf == true){
+            GameManager.Instance.CloseSettingPannel = true;
+            Cursor.lockState = CursorLockMode.Locked;
+        }   
+        
         
         currentState.OnEnter();
         UIManager.Instance.ExitLoadingUI();

@@ -14,7 +14,7 @@ public class FloorSetting: ScriptableObject
 }
 
 [Serializable]
-public struct FloorObjectSetting{
+public class FloorObjectSetting{
     public int X;
     public int Y;
     public FloorGameObjectType FloorGameObjectType;

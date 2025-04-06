@@ -3,22 +3,22 @@
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 32
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: idle_ECS
-  m_Shader: {fileID: 4800000, guid: 650dd9526735d5b46b79224bc6e94025, type: 3}
+  m_Shader: {fileID: 4800000, guid: 0b60e160fe93a4e4b883e1f7ab294d7d, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - _USESPECULARLIGHT_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap:
-    RenderType: Opaque
+  stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: :m_CustomRenderQueue
   m_SavedProperties:
@@ -164,8 +164,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.37227762, g: 0.9150943, b: 0.35107386, a: 1}
-    - _Color: {r: 0.37227762, g: 0.9150943, b: 0.35107386, a: 1}
+    - _BaseColor: {r: 0.25882354, g: 0.8930817, b: 0.21568628, a: 1}
+    - _Color: {r: 0.46582967, g: 0.8930817, b: 0.45215762, a: 1}
     - _EmissionColor: {r: 0.025943398, g: 0.025943398, b: 0.025943398, a: 1}
     - _EmissionMapChannelMask: {r: 1, g: 1, b: 1, a: 0}
     - _IndirectLightMinColor: {r: 0.1, g: 0.1, b: 0.1, a: 1}

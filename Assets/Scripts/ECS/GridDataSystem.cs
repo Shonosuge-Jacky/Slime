@@ -1,3 +1,4 @@
+using System;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -18,42 +19,44 @@ public partial struct GridDataSystem : ISystem
         state.Enabled = false;
         Int2ToFloorState = 
             new NativeHashMap<int2, GridDatum>(1, Allocator.Persistent);
-        for(int i = GameDataCenter._FloorSetting.MinX; i <= GameDataCenter._FloorSetting.MaxX; i++){
-            for(int j = GameDataCenter._FloorSetting.MinY; j <= GameDataCenter._FloorSetting.MaxY; j++){
-                Int2ToFloorState.Add(new int2(i, j), new GridDatum(GameDataCenter._FloorInitialState));
+        foreach(_FloorSetting floorSetting in GameDataCenter._WholeFloorSetting.wholeFloorSetting){
+            for(int i = floorSetting.floorSetting.MinX - 15 ; i<floorSetting.floorSetting.MaxX + 15; i++){
+                for (int j = floorSetting.floorSetting.MinY - 15; j<floorSetting.floorSetting.MaxY + 15; j++){
+                    Int2ToFloorState.Add(new int2(i + floorSetting.x * 150, j + floorSetting.y * 150), new GridDatum(GameDataCenter._FloorInitialState));
+                }
             }
-        }
 
-        // Debug.Log("Test: " + Int2ToFloorState[new int2(20, 20)].State.ToString());
-        
-        // Int2ToFloorState[new int2(20, 20)].SetValues(FloorState.Move, FloorState.Move);
-        //ToDo: Test if its correct or not
-        foreach(FloorObjectSetting s in GameDataCenter._FloorSetting.FloorObjects)
-        {
-            // Debug.Log(s.FloorGameObjectType);
-            FloorGameObject o = GameDataCenter.GetFloorGameObject(s.FloorGameObjectType);
-            Debug.Log("Instantiate GridData for " + GameDataCenter.GetFloorGameObject(s.FloorGameObjectType).gameObjectName + " AT " + s.X.ToString() + "," + s.Y.ToString());
+            // Debug.Log("Test: " + Int2ToFloorState[new int2(20, 20)].State.ToString());
             
-            for(int i = s.X - o.leadArea; i < s.X + o.leadArea; i ++)
+            // Int2ToFloorState[new int2(20, 20)].SetValues(FloorState.Move, FloorState.Move);
+            //ToDo: Test if its correct or not
+            foreach(FloorObjectSetting s in GameDataCenter._FloorSetting.FloorObjects)
             {
-                for(int j = s.Y - o.leadArea; j < s.Y + o.leadArea; j ++)
+                // Debug.Log(s.FloorGameObjectType);
+                FloorGameObject o = GameDataCenter.GetFloorGameObject(s.FloorGameObjectType);
+                Debug.Log("Instantiate GridData for " + GameDataCenter.GetFloorGameObject(s.FloorGameObjectType).gameObjectName + " AT " + s.X.ToString() + "," + s.Y.ToString());
+                
+                for(int i = s.X - o.leadArea; i < s.X + o.leadArea; i ++)
                 {
-                    NativeHashMapFunctions.ChangeValue(Int2ToFloorState, new int2(i, j), 
-                        new GridDatum(FloorState.Move, FloorState.Idle, new Vector3(s.X,0,s.Y) - new Vector3(i,0,j)));
+                    for(int j = s.Y - o.leadArea; j < s.Y + o.leadArea; j ++)
+                    {
+                        NativeHashMapFunctions.ChangeValue(Int2ToFloorState, new int2(i + floorSetting.x * 150, j + floorSetting.y * 150), 
+                            new GridDatum(FloorState.Move, FloorState.Idle, new Vector3(s.X,0,s.Y) - new Vector3(i,0,j)));
+                    }
+                }
+
+                for(int i = s.X - o.stateArea; i < s.X + o.stateArea; i ++)
+                {
+                    for(int j = s.Y - o.stateArea; j < s.Y + o.stateArea; j ++)
+                    {
+                        NativeHashMapFunctions.ChangeValue(Int2ToFloorState, new int2(i + floorSetting.x * 150, j + floorSetting.y * 150), 
+                            new GridDatum(o.daytimeFloorState, o.nighttimeFloorState));
+                    }
                 }
             }
 
-            for(int i = s.X - o.stateArea; i < s.X + o.stateArea; i ++)
-            {
-                for(int j = s.Y - o.stateArea; j < s.Y + o.stateArea; j ++)
-                {
-                    NativeHashMapFunctions.ChangeValue(Int2ToFloorState, new int2(i, j), 
-                        new GridDatum(o.daytimeFloorState, o.nighttimeFloorState));
-                }
-            }
+            SetBorder(Int2ToFloorState, floorSetting.floorSetting.MinX , floorSetting.floorSetting.MaxX, floorSetting.floorSetting.MinY, floorSetting.floorSetting.MaxY);
         }
-
-        SetBorder(Int2ToFloorState);
         // Debug.Log("Test2: " + Int2ToFloorState[new int2(20, 20)].State.ToString());
         // Debug.Log("Test2: " + Int2ToFloorState[new int2(21, 21)].State.ToString());
 
@@ -66,25 +69,64 @@ public partial struct GridDataSystem : ISystem
         Debug.Log("DoneCreatingInt2ToFloorState" );
         // Debug.Log(Int2ToFloorState[new int2(20,21)].State);
     }
+    void SetBorder(NativeHashMap<int2, GridDatum> Int2ToFloorState, int minX, int maxX, int minY, int maxY, int borderRange = 15){
+        Vector3 midPoint = new Vector3((minX + maxX)/2,0,(minY + maxY)/2);
+        for (int i = minX; i <= maxX; i++){
+            for ( int x = 0; x <= 15; x++){
+                SetBorderData(midPoint, i, minY + x);
+                SetBorderData(midPoint, i, maxY - x);
+            }
+        }
+        for (int i = minY; i <= maxY; i++){
+            for ( int x = 0; x <= 15; x++){
+                SetBorderData(midPoint, minX + x, i);
+                SetBorderData(midPoint, maxX - x, i);
+            }
+        }
 
-    void SetBorder(NativeHashMap<int2, GridDatum> Int2ToFloorState, int borderRange = 15){
-        int max = GameDataCenter._FloorSetting.MaxX;
-        int min = GameDataCenter._FloorSetting.MinX;
+        // for (int i = min; i <= max; i++){
+        //     // Debug.Log(i);
+        //     for ( int x = 0; x <= borderRange; x++){
+        //         // Int2ToFloorState.TryAdd(new int2(i, min+x), new GridDatum(FloorState.Move, midPoint - new Vector3(i, 0, min+x) ));
+        //         // Int2ToFloorState.TryAdd(new int2(i, max-x), new GridDatum(FloorState.Move, midPoint - new Vector3(i, 0, max-x) ));
+        //         // Int2ToFloorState.TryAdd(new int2(min+x, i), new GridDatum(FloorState.Move, midPoint - new Vector3(min+x, 0, i) ));
+        //         // Int2ToFloorState.TryAdd(new int2(max-x, i), new GridDatum(FloorState.Move, midPoint - new Vector3(max-x, 0, i) ));
+        //         NativeHashMapFunctions.ChangeValue(Int2ToFloorState, new int2(i, min+x), new GridDatum(FloorState.Move, midPoint - new Vector3(i, 0, min+x) ));
+        //         NativeHashMapFunctions.ChangeValue(Int2ToFloorState, new int2(i, max-x), new GridDatum(FloorState.Move, midPoint - new Vector3(i, 0, max-x) ));
+        //         NativeHashMapFunctions.ChangeValue(Int2ToFloorState, new int2(min+x, i), new GridDatum(FloorState.Move, midPoint - new Vector3(min+x, 0, i) ));
+        //         NativeHashMapFunctions.ChangeValue(Int2ToFloorState, new int2(max-x, i), new GridDatum(FloorState.Move, midPoint - new Vector3(max-x, 0, i) ));
+        //         // floorGridsStorage.SetFloorDebug(new Vector3Int(i, 0, min+x), debugs.arrow);
+        //         // floorGridsStorage.SetFloorState(new Vector3Int(i, 0, max-x), FloorState.Move, midPoint - new Vector3(i,0,max-1) );
+        //         // floorGridsStorage.SetFloorDebug(new Vector3Int(i, 0, max-x), debugs.arrow);
+        //         // floorGridsStorage.SetFloorState(new Vector3Int(min+x, 0, i), FloorState.Move, midPoint - new Vector3(min+1, 0, i) );
+        //         // floorGridsStorage.SetFloorDebug(new Vector3Int(min+x, 0, i), debugs.arrow);
+        //         // floorGridsStorage.SetFloorState(new Vector3Int(max-x, 0, i), FloorState.Move, midPoint - new Vector3(max-1, 0, i) );
+        //         // floorGridsStorage.SetFloorDebug(new Vector3Int(max-x, 0, i), debugs.arrow);
+        //     }
+        // }
+    }
+
+    void SetBorderData(Vector3 mid, int x, int y){
+        NativeHashMapFunctions.ChangeValue(Int2ToFloorState, new int2(x, y), new GridDatum(FloorState.Move, mid - new Vector3(x, 0, y) ));
+    }
+    void SetBorder(NativeHashMap<int2, GridDatum> Int2ToFloorState, FloorSetting floorSetting,  int borderRange = 15){
+        int max = floorSetting.MaxX;
+        int min = floorSetting.MinX;
         Vector3 midPoint = new Vector3(max/2,0,max/2);
         for(int i = min - 1; i >= min - borderRange - 1; i--){
             for(int j = min - borderRange - 1; j <= max + borderRange; j++){
-                Int2ToFloorState.Add( new int2(i, j), new GridDatum(FloorState.Move, midPoint - new Vector3(i, 0, j)));
+                Int2ToFloorState.TryAdd( new int2(i, j), new GridDatum(FloorState.Move, midPoint - new Vector3(i, 0, j)));
             }
         }
         for(int i = min; i <= max; i ++){
             for(int j = 1; j <= borderRange; j ++){
-                Int2ToFloorState.Add( new int2(i, min - j), new GridDatum(FloorState.Move, midPoint - new Vector3(i, 0, 0 - j)));
-                Int2ToFloorState.Add( new int2(i, max + j), new GridDatum(FloorState.Move, midPoint - new Vector3(i, 0, 100 + j)));
+                Int2ToFloorState.TryAdd( new int2(i, min - j), new GridDatum(FloorState.Move, midPoint - new Vector3(i, 0, 0 - j)));
+                Int2ToFloorState.TryAdd( new int2(i, max + j), new GridDatum(FloorState.Move, midPoint - new Vector3(i, 0, 100 + j)));
             }
         }
         for(int i = max + 1 ; i <= max + borderRange + 1; i++){
             for(int j = min - borderRange - 1; j <= max + borderRange; j++){
-                Int2ToFloorState.Add( new int2(i, j), new GridDatum(FloorState.Move, midPoint - new Vector3(i, 0, j)));
+                Int2ToFloorState.TryAdd( new int2(i, j), new GridDatum(FloorState.Move, midPoint - new Vector3(i, 0, j)));
             }
         }
 
@@ -150,6 +192,7 @@ public struct GridData : IComponentData {
     
 } 
 
+[Serializable]
 public struct GridDatum
 {
     public FloorState State { get; private set; }

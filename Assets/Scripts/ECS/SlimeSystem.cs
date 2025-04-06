@@ -67,16 +67,26 @@ public partial struct SlimeSystem : ISystem
                     // Debug.Log("!!!: " + transform.Rotation + " . " +  IsWithinRange(transform.Rotation.value.y, -1*slime.TargetTransform.Rotation.value.y));
                     slime.RotateDirection = IsWithinRange(transform.Rotation.value.y, -1*slime.TargetTransform.Rotation.value.y);
                     // Debug.Log("slimeTargetRotation" + slime.TargetTransform.Rotation);
+                    slime.CurrState = SlimeState.Idle;
                     break;
                 case FloorState.Music:
                     // Debug.Log("Music!");
                     slime.CurrSubState = SlimeSubState.Idle;
-                    transform.Position = new float3(transform.Position.x, 5, transform.Position.z);
+                    slime.CurrState = SlimeState.Music;
+                    // transform.Position = new float3(transform.Position.x, 5, transform.Position.z);
+                    break;
+                case FloorState.Read:
+                    slime.CurrSubState = SlimeSubState.Idle;
+                    slime.CurrState = SlimeState.Read;
+                    break;
+                case FloorState.Gym:
+                    slime.CurrSubState  = SlimeSubState.Idle;
+                    slime.CurrState = SlimeState.Gym;
                     break;
                 case FloorState.Idle:
                     // Debug.Log("SlimeAssignJob-Rotate");
                     slime.CurrSubState = SlimeSubState.Rotating;
-
+                    slime.CurrState = SlimeState.Idle;
                     Quaternion randomDirection = Quaternion.LookRotation(new Vector3(Random.NextFloat(-1f, 1f), 0, Random.NextFloat(-1f,1f)));
                     slime.TargetTransform = LocalTransform.FromPositionRotation(transform.Position + math.mul(randomDirection, new float3(0, 0, Random.NextFloat(3f, 12f))), randomDirection);
                     // Debug.Log("1?-1?"+ transform.Rotation + " . " + slime.TargetTransform.Rotation + " . " +  (transform.Rotation.value.y + slime.TargetTransform.Rotation.value.y) + " . " +Quaternion.RotateTowards(transform.Rotation, slime.TargetTransform.Rotation, 1f) + " . " + Quaternion.Dot(transform.Rotation, slime.TargetTransform.Rotation) + " . " + Quaternion.Angle(transform.Rotation, slime.TargetTransform.Rotation));

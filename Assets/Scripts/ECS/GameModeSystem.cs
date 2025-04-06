@@ -30,12 +30,16 @@ public partial struct GameModeSystem : ISystem
     {
         EntityCommandBuffer ecb = new EntityCommandBuffer(Allocator.TempJob);
         UnityEngine.Debug.Log("GameModeSystem Onupdate");
+        int selectedRoomID = GameManager.Instance.SelectedRoom.myRoomID;
         // new 
         foreach ( var (temp, eventEntity) in SystemAPI.Query<ChangeGameModeToExploreEventComponent>().WithEntityAccess()){
             UnityEngine.Debug.Log("GameModeSystem Onupdate - ChangeGameModeToExplore");
             foreach ( var( slime, transform, entity ) in
              SystemAPI.Query<RefRO<SlimeComponent>, RefRO<LocalTransform>>().WithAll<SlimeComponent>().WithEntityAccess()){
-                UnityEngine.Debug.Log("GameModeSystem Onupdate - Add Hidden and DisableRendering");
+                if(slime.ValueRO.RoomID != selectedRoomID){
+                    continue;
+                }
+                Debug.Log("GameModeSystem Onupdate - Add Hidden and DisableRendering");
                 // transform.ValueRW.Position = new float3(0,-100,0);
                 // ecb.AddComponent<Disabled>(entity);
                 ecb.DestroyEntity(entity);
@@ -77,6 +81,7 @@ public partial struct GameModeSystem : ISystem
                     isAvailable = true,
                     // CurrState = slimeGameObject.GetComponent<SlimeProperty>().slimeState,   //Change
                     CurrState = slimeProperty.slimeState,
+                    CurrValue = slimeProperty.slimeValue,
                     CurrSubState = SlimeSubState.Waiting,
                     TargetTransform = LocalTransform.Identity,
                     RotateDirection = 0

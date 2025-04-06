@@ -23,14 +23,14 @@ public class PlayerControl : MonoBehaviour
 
     private void Awake() {
         areaOfInterest = transform.GetChild(0).GetComponent<PlayerAreaOfInterest>();
-        EventCenter.Instance.AddEventListener(EventType.ChangeGameModeToInspect, ()=>SetPosition(inspectPosition));
-        EventCenter.Instance.AddEventListener(EventType.ChangeGameModeToExplore, ()=>SetPosition(explorePosition));
+        EventCenter.Instance.AddEventListener(EventType.ChangeGameModeToInspect, ()=>SetPosition(GameManager.Instance.SelectedRoom.myInspectSpawnPoint, 40));
+        EventCenter.Instance.AddEventListener(EventType.ChangeGameModeToExplore, ()=>SetPosition(GameManager.Instance.SelectedRoom.myExploreSpawnPoint, 12));
     }
     private void Start() {
         if(GameManager.Instance.CurrGameMode == GameMode.Inspect){
-            SetPosition(inspectPosition);
+            SetPosition(inspectPosition, 40);
         }else{
-            SetPosition(explorePosition);
+            SetPosition(explorePosition, 12);
         }
     }
 
@@ -63,8 +63,9 @@ public class PlayerControl : MonoBehaviour
         transform.position += change * speed * Time.deltaTime;
     }
 
-    void SetPosition(Transform position){
+    void SetPosition(Transform position, float newspeed){
         transform.position = position.position;
+        speed = newspeed;
     }
 
     // void UpdateMovePosition(){

@@ -4,11 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - SlimeParent
+  - Ground
+  - SlimeProperty
   - Slime
   - SlimeArmature
-  - Ground
-  - SlimeParent
-  - SlimeProperty
+  - GroundDebug
   layers:
   - Default
   - TransparentFX
@@ -16,12 +17,12 @@ TagManager:
   - 
   - Water
   - UI
-  - SlimeArmature
   - Slime
-  - FloorObject
   - Player
-  - Floor
-  - SlimeAreaOfInterest
+  - SlimeArmature
+  - Room
+  - 
+  - 
   - 
   - 
   - 
@@ -45,7 +46,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Debug
-    uniqueID: 4140360763
     locked: 0

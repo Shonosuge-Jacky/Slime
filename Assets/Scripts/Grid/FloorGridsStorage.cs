@@ -78,6 +78,9 @@ public class FloorGridsStorage : ScriptableObject
     }
     public void SetFloorState(Vector3Int cellPosition, FloorState state, Vector3 direction){
         floorStates[cellPosition].floorState = state;
+        // Debug.Log(cellPosition + " " + floorStates[cellPosition].floorState);
+        floorStates[cellPosition].dayNightFloorState.dayTimeFloorState = state;
+        floorStates[cellPosition].dayNightFloorState.nightTimeFloorState = state;
         floorStates[cellPosition].direction = Quaternion.LookRotation(direction);
     }
     public void SetFloorState(Vector3Int cellPosition, FloorState dayTimeState, FloorState nightTimeState){
@@ -141,7 +144,9 @@ public class FloorGridsStorage : ScriptableObject
 public enum FloorState{
     Move,
     Idle,
-    Music
+    Music,
+    Read,
+    Gym
 }
 
 public struct DayNightFloorState{

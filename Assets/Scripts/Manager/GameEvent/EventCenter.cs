@@ -33,7 +33,8 @@ public enum EventType
     ChangeGameModeToInspect,
     ChangeGameModeToExplore,
     DoneChangeGameModeToInspect,
-    DoneChangeGameModeToExplore
+    DoneChangeGameModeToExplore,
+    UpdateValueEvent
 }
 
 public class EventCenter

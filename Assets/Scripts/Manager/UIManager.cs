@@ -18,8 +18,11 @@ public class UIManager : MonoBehaviour
 
     [Header("Slime Information")]
     public RectTransform infoPanel;
-    public TMP_Text stateText;
+    public TMP_Text infoText;
+    public GameObject slimeInfoParent;
+    public TMP_Text slimeInfoText;
     [SerializeField] bool isPointing;
+    [SerializeField] bool isShowingInformaiton;
 
     [Header("Loading")]
     public GameObject LoadingLeftPannel;
@@ -27,6 +30,14 @@ public class UIManager : MonoBehaviour
     
     public void SetPointing(bool isPointing){
         this.isPointing = isPointing;
+    }
+    public void SetisShowingInformaiton(bool isShowing)
+    {
+        this.isShowingInformaiton = isShowing;
+    }
+    public bool GetPointing()
+    {
+        return this.isPointing;
     }
 
     private void Awake() {
@@ -44,6 +55,7 @@ public class UIManager : MonoBehaviour
     }
 
     private void Update() {
+        UpdateInfoPanelLocation();
         UpdateSlimeInfoPanelLocation();
         if(!isUIAnimation){
 
@@ -51,15 +63,36 @@ public class UIManager : MonoBehaviour
         CheckSettingPanel();
     }
 
-    public void UpdateSlimeInfoPanelLocation(){
+    public void UpdateInfoPanelLocation(){
         if(isPointing){
             infoPanel.DOAnchorPosX(350, 0.5f);
         }else{
             infoPanel.DOAnchorPosX(650, 0.5f);
+            slimeInfoParent.GetComponent<RectTransform>().DOAnchorPosX(-500, 0.5f);
         }
     }
-    public void UpdateSlimeInfoPanelState(SlimeState slimeState){
-        stateText.text = "State: " + slimeState.ToString();
+    public void UpdateSlimeInfoPanelLocation()
+    {
+        if(isShowingInformaiton)
+        {
+            slimeInfoParent.GetComponent<RectTransform>().DOAnchorPosX(-50, 0.5f);
+        }
+    }
+    // public void UpdateSlimeInfoPanelState(SlimeProperty slimeProperty){
+    //     infoText.text = string.Format("State: {0} \n Music: {1} \n Read: {2} \n Strength: {3}", slimeProperty.slimeState.ToString(), slimeProperty.slimeValue.MusicValue.ToString(), slimeProperty.slimeValue.ReadValue.ToString(), slimeProperty.slimeValue.StrengthValue.ToString());
+    // }
+
+    public void UpdateSlimeInfoPanelState(){
+        infoText.text = string.Format("Spacebar to see more");
+    }
+
+    public void UpdateSlimeInfoPanel(SlimeProperty slimeProperty)
+    {
+        slimeInfoText.text = string.Format("Slime State: {0} \n \nStatistic: \n Music {1} \n Read: {2} \n Strength: {3}", slimeProperty.slimeState.ToString(), slimeProperty.slimeValue.MusicValue.ToString(), slimeProperty.slimeValue.ReadValue.ToString(), slimeProperty.slimeValue.StrengthValue.ToString());
+    }
+
+    public void UpdateRoomInfoPanelState(){
+        infoText.text = string.Format("Pointing At Room (E)");
     }
 
     public void UpdateGameSpeedUIText(Slider slider){
@@ -67,6 +100,9 @@ public class UIManager : MonoBehaviour
     }
 
     public void CheckSettingPanel(){
+        if(!GameManager.Instance.isPausable){
+            return;
+        }
         if(Input.GetKeyDown(KeyCode.Escape) || GameManager.Instance.CloseSettingPannel){
             if(settingObject.activeSelf){
                 blackBackground.GetComponent<Image>().DOFade(0, 0.5f);

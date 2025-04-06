@@ -20,5 +20,7 @@ public class FloorGameObject : ScriptableObject
 
 public enum FloorGameObjectType{
     Jukebox,
-    StreetLight
+    StreetLight,
+    BookShelf,
+    Dumbbell
 }

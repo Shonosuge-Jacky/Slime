@@ -5,7 +5,7 @@ public class PlayerCamera : MonoBehaviour
 {
     [Header("Property")]
     public float standingY = 0;
-    public float crouchingY = -4;
+    public float crouchingY = -2f;
     public float minFieldOfView = 40;
     public float maxFieldOfView = 80;
     public float sensitivity = 100f;
@@ -17,8 +17,12 @@ public class PlayerCamera : MonoBehaviour
 
     [Header("Raycast")]
     [SerializeField] RaycastHit HitInfo;
-    public LayerMask mask;
+    public LayerMask slimeMask;
+    public LayerMask roomMask;
     public float spectateDistance;
+    public float inspectDistance;
+    GameObject selectedRoom;
+    bool pointed;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +39,11 @@ public class PlayerCamera : MonoBehaviour
             {
                 CheckCrouch();
                 CheckInteractRaycast();
+                CheckInformationRaycast();
+            }
+            if(GameManager.Instance.CurrGameMode == GameMode.Inspect)
+            {
+                CheckInteractRaycastToRoom();
             }
             CheckZoom();
         }
@@ -55,9 +64,9 @@ public class PlayerCamera : MonoBehaviour
 
     void CheckCrouch(){
         if(Input.GetKeyDown(KeyCode.LeftShift)){
-            transform.DOLocalMoveY(crouchingY, 0.5f);
+            transform.DOLocalMoveY(crouchingY, 0.7f);
         }else if(Input.GetKeyUp(KeyCode.LeftShift)){
-            transform.DOLocalMoveY(standingY, 0.5f);
+            transform.DOLocalMoveY(standingY, 0.7f);
         }
     }
     void CheckZoom(){
@@ -72,14 +81,51 @@ public class PlayerCamera : MonoBehaviour
     }
 
     void CheckInteractRaycast(){
+        // Debug.Log("CheckInteractRaycast");
         Debug.DrawRay(transform.position, transform.forward * 100.0f, Color.yellow);
-        if(Physics.Raycast(transform.position,transform.forward, out HitInfo, spectateDistance, mask)){
-            GameManager.Instance.UIManager.UpdateSlimeInfoPanelState(HitInfo.transform.parent.parent.GetComponent<SlimeProperty>().slimeState);
+        if(Physics.Raycast(transform.position,transform.forward, out HitInfo, spectateDistance, slimeMask)){
+            // GameManager.Instance.UIManager.UpdateSlimeInfoPanelState(HitInfo.transform.parent.parent.GetComponent<SlimeProperty>());
+            GameManager.Instance.UIManager.UpdateSlimeInfoPanelState();
             GameManager.Instance.UIManager.SetPointing(true);
         }else{
             GameManager.Instance.UIManager.SetPointing(false);
         }
             
+    }
+
+    void CheckInformationRaycast()
+    {
+        if(GameManager.Instance.UIManager.GetPointing())
+        {
+            GameManager.Instance.UIManager.UpdateSlimeInfoPanel(HitInfo.transform.parent.parent.GetComponent<SlimeProperty>());
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                GameManager.Instance.UIManager.SetisShowingInformaiton(true);
+            }
+        }else
+        {
+            GameManager.Instance.UIManager.SetisShowingInformaiton(false);
+        }
+    }
+
+    void CheckInteractRaycastToRoom(){
+        if(Physics.Raycast(transform.position,transform.forward, out HitInfo, inspectDistance, roomMask)){
+            GameManager.Instance.UIManager.UpdateRoomInfoPanelState();
+            GameManager.Instance.UIManager.SetPointing(true);
+            GameManager.Instance.SelectedRoom = HitInfo.transform.gameObject.GetComponent<RoomProperty>();
+            selectedRoom = HitInfo.transform.gameObject;
+            selectedRoom.GetComponent<MeshRenderer>().material = GameDataCenter._RoomMaterialSelected;
+            pointed = true;
+        }else{
+            if(!pointed){
+                return;
+            }
+            GameManager.Instance.UIManager.SetPointing(false);
+            GameManager.Instance.SelectedRoom = null;
+            selectedRoom.GetComponent<MeshRenderer>().material = GameDataCenter._RoomMaterialIdle;
+            selectedRoom = null;
+            pointed = false;
+        }
     }
 
 }
